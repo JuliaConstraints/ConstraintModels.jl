@@ -12,7 +12,12 @@ LocalSearchSolvers = "2b10edaa-728d-4283-ac71-07e312d6ccf3"
 MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
 
 [compat]
+CBLS = "0.1"
+Constraints = "0.2"
+Dictionaries = "0.3"
+JuMP = "0.21"
 LocalSearchSolvers = "0.2"
+MathOptInterface = "0.9"
 julia = "1.6"
 
 [extras]
