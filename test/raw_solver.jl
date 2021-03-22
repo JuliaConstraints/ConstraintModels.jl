@@ -44,19 +44,11 @@
 end
 
 @testset "Raw solver: sudoku" begin
-    sudoku_instance = collect(Iterators.flatten([
-        9  3  0  0  0  0  0  4  0
-        0  0  0  0  4  2  0  9  0
-        8  0  0  1  9  6  7  0  0
-        0  0  0  4  7  0  0  0  0
-        0  2  0  0  0  0  0  6  0
-        0  0  0  0  2  3  0  0  0
-        0  0  8  5  3  1  0  0  2
-        0  9  0  2  8  0  0  0  0
-        0  7  0  0  0  0  0  5  3
-    ]))
-
-    s = solver(sudoku(3; start = sudoku_instance, modeler = :raw); options = Options(print_level = :minimal, iteration = 10000))
+    sudoku_instance = collect(Iterators.flatten(sudoku_start))
+    s = solver(
+        sudoku(3; start = sudoku_instance, modeler = :raw);
+        options = Options(print_level = :minimal, iteration = 10000)
+    )
     display(Dictionary(1:length(sudoku_instance), sudoku_instance))
     solve!(s)
     display(solution(s))
