@@ -40,6 +40,7 @@ qap_distances = [
     4  4  3  3  6  7  6  5  5  7  0  9
     6  7  6  6  7  5  7  3  2  7  9  0
 ]
+<<<<<<< HEAD
 
 compounds_names = ["H", "H₂", "H₂O", "N", "N₂", "NH", "NO", "O", "O₂", "OH"]
 
@@ -68,3 +69,5 @@ standard_free_energy = [
     -26.662
     -22.179
 ]
+=======
+>>>>>>> Add instances.jl file in test.
