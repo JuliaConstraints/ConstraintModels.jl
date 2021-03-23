@@ -22,10 +22,10 @@ function mincut(graph; source, sink, interdiction=0)
 
     # Extract error function from usual_constraint
     e1 = (x; param=nothing, dom_size=n + 1) -> error_f(
-        usual_constraints[:ordered])(x; param=param, dom_size=dom_size
+        usual_constraints[:ordered])(x; param, dom_size
     )
     e2 = (x; param=nothing, dom_size=n + 1) -> error_f(
-        usual_constraints[:all_different])(x; param=param, dom_size=dom_size
+        usual_constraints[:all_different])(x; param, dom_size
     )
 
     # Add constraint
@@ -33,7 +33,7 @@ function mincut(graph; source, sink, interdiction=0)
     constraint!(m, e2, 1:(n + 1))
 
     # Add objective
-    objective!(m, (x...) -> o_mincut(graph, x...; interdiction=interdiction))
+    objective!(m, (x...) -> o_mincut(graph, x...; interdiction))
 
     return m
 end

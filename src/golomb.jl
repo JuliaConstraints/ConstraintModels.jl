@@ -7,13 +7,13 @@ function golomb(n, L, ::Val{:raw})
 
     # Extract error function from usual_constraint
     e1 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:all_different])(x; param=param, dom_size=dom_size
+        usual_constraints[:all_different])(x; param, dom_size
     )
     e2 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:all_equal_param])(x; param=param, dom_size=dom_size
+        usual_constraints[:all_equal_param])(x; param, dom_size
     )
     e3 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:dist_different])(x; param=param, dom_size=dom_size
+        usual_constraints[:dist_different])(x; param, dom_size
     )
 
     # # Add constraints

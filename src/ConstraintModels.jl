@@ -16,6 +16,7 @@ export golomb
 export magic_square
 export n_queens
 export sudoku
+export chemical_equilibrium
 
 include("assignment.jl")
 include("cut.jl")

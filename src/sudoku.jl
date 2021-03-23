@@ -75,8 +75,8 @@ function sudoku(n, start, ::Val{:JuMP})
         @variable(m, X[1:N, 1:N])
         for i in 1:N, j in 1:N
             v_ij = start[i,j]
-            if 1 ≤ v_ij ≤ N 
-                @constraint(m, X[i,j] in DiscreteSet(v_ij))
+            if 1 ≤ v_ij ≤ N
+                @constraint(m, X[i,j] == v_ij)
             else
                 @constraint(m, X[i,j] in DiscreteSet(1:N))
             end

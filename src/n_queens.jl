@@ -1,8 +1,8 @@
 function n_queens(n, ::Val{:JuMP})
     model = JuMP.Model(CBLS.Optimizer)
-    
+
     @variable(model, queens[1:n], DiscreteSet(1:n))
-    @constraint(model, queens in CBLS.AllDifferent())
+    @constraint(model, queens in AllDifferent())
 
     for i in 1:n
         for j in i+1:n
