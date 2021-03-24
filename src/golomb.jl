@@ -33,9 +33,7 @@ end
 function golomb(n, L, ::Val{:JuMP})
     m = JuMP.Model(CBLS.Optimizer)
 
-    @variable(m, X[1:n], DiscreteSet(0:L))
-
-    # @constraint(m, X[1] in AllEqualParam(0)) # first mark at 0
+    @variable(m, 1 ≤ X[1:n] ≤ L, Int)
 
     @constraint(m, X in AllDifferent()) # different marks
     @constraint(m, X in Ordered()) # for output convenience, keep them ordered
