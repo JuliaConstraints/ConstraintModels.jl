@@ -4,7 +4,7 @@ function magic_square(n, ::Val{:JuMP})
     magic_constant = n * (N + 1) / 2
     Σeq = x -> sum(x) == magic_constant
 
-    @variable(model, X[1:n, 1:n], DiscreteSet(1:N))
+    @variable(model, 1 ≤ X[1:n, 1:n] ≤ N, Int)
     @constraint(model, vec(X) in AllDifferent())
 
     for i in 1:n

@@ -69,16 +69,12 @@ function sudoku(n, start, ::Val{:JuMP})
     N = n^2
     m = JuMP.Model(CBLS.Optimizer)
 
-    if isnothing(start)
-        @variable(m, X[1:N, 1:N], DiscreteSet(1:N))
-    else
-        @variable(m, X[1:N, 1:N])
+    @variable(m, 1 ≤ X[1:N, 1:N] ≤ N, Int)
+    if !isnothing(start)
         for i in 1:N, j in 1:N
             v_ij = start[i,j]
             if 1 ≤ v_ij ≤ N
                 @constraint(m, X[i,j] == v_ij)
-            else
-                @constraint(m, X[i,j] in DiscreteSet(1:N))
             end
         end
     end
