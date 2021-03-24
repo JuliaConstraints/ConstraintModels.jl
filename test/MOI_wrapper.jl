@@ -15,11 +15,11 @@ const OPTIMIZER = MOI.instantiate(OPTIMIZER_CONSTRUCTOR)
     @test MOI.get(OPTIMIZER, MOI.SolverName()) == "LocalSearchSolvers"
 end
 
-@testset "supports_default_copy_to" begin
-    @test MOIU.supports_default_copy_to(OPTIMIZER, false)
-    # Use `@test !...` if names are not supported
-    @test !MOIU.supports_default_copy_to(OPTIMIZER, true)
-end
+# @testset "supports_default_copy_to" begin
+#     @test MOIU.supports_default_copy_to(OPTIMIZER, false)
+#     # Use `@test !...` if names are not supported
+#     @test !MOIU.supports_default_copy_to(OPTIMIZER, true)
+# end
 
 const BRIDGED = MOI.instantiate(
     OPTIMIZER_CONSTRUCTOR, with_bridge_type = Float64
