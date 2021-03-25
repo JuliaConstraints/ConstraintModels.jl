@@ -5,6 +5,7 @@ function qap(n, W, D, ::Val{:JuMP})
     @constraint(model, X in AllDifferent())
 
     Σwd = p -> sum(sum(W[p[i], p[j]] * D[i, j] for j in 1:n) for i in 1:n)
+
     @objective(model, Min, ScalarFunction(Σwd))
 
     return model, X

@@ -41,8 +41,6 @@ qap_distances = [
     6  7  6  6  7  5  7  3  2  7  9  0
 ]
 
-# compounds_names = ["H", "H₂", "H₂O", "N", "N₂", "NH", "NO", "O", "O₂", "OH"]
-
 atoms_compounds = [
     1 0 0
     2 0 0
@@ -56,6 +54,8 @@ atoms_compounds = [
     1 0 1
 ]
 
+elements_weights = [2 1 1]
+
 standard_free_energy = [
     -6.0890
     -17.164
@@ -68,3 +68,5 @@ standard_free_energy = [
     -26.662
     -22.179
 ]
+
+compounds_names = ["H", "H₂", "H₂O", "N", "N₂", "NH", "NO", "O", "O₂", "OH"]
