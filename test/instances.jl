@@ -69,4 +69,8 @@ standard_free_energy = [
     -22.179
 ]
 
-compounds_names = ["H", "H₂", "H₂O", "N", "N₂", "NH", "NO", "O", "O₂", "OH"]
+compounds_names = "x₁⋅H + x₂⋅H₂ + x₃⋅H₂O + x₄⋅N + x₅⋅N₂ + x₆⋅NH + x₇⋅NO + x₈⋅O + x₉⋅O₂ + x₁₀⋅OH"
+
+mixture_name =  "½⋅N₂H₄ + ½⋅O₂"
+
+equation = compounds_names * " = " * mixture_name

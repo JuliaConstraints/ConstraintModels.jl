@@ -69,3 +69,11 @@ end
 
     @info "JuMP: basic opt" value(x) value(y) (12*value(x)+20*value(y))
 end
+
+@testset "JuMP: Chemical equilibrium" begin
+    m, X = chemical_equilibrium(atoms_compounds, elements_weights, standard_free_energy)
+    # set_optimizer_attribute(m, "iteration", 10000)
+    # set_time_limit_sec(m, 120.0)
+    optimize!(m)
+    @info "JuMP: $compounds_names ⟺ $mixture_name" value.(X)
+end
