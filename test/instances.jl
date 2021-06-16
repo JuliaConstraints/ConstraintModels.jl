@@ -74,3 +74,8 @@ compounds_names = "x₁⋅H + x₂⋅H₂ + x₃⋅H₂O + x₄⋅N + x₅⋅N�
 mixture_name =  "½⋅N₂H₄ + ½⋅O₂"
 
 equation = compounds_names * " = " * mixture_name
+
+# processing_times = [3, 2, 1]
+# due_times = [5, 6, 8]
+processing_times = [3, 2]
+due_times = [5, 6]
