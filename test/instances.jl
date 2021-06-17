@@ -75,7 +75,5 @@ mixture_name =  "½⋅N₂H₄ + ½⋅O₂"
 
 equation = compounds_names * " = " * mixture_name
 
-# processing_times = [3, 2, 1]
-# due_times = [5, 6, 8]
-processing_times = [3, 2]
-due_times = [5, 6]
+processing_times = [3, 2, 1]
+due_times = [5, 6, 8]
