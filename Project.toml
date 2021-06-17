@@ -1,7 +1,7 @@
 name = "ConstraintModels"
 uuid = "841a6ec5-cac3-4c42-9a0a-4b21c9553698"
 authors = ["Jean-Francois Baffier"]
-version = "0.1.7"
+version = "0.1.8"
 
 [deps]
 CBLS = "a3809bfe-37bb-4d48-a667-bac4c6be8d90"
