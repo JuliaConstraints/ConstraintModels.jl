@@ -1,39 +1,7 @@
-function golomb(n, L, ::Val{:raw})
-    m = model(; kind=:golomb)
-
-    # Add variables
-    d = domain(0:L)
-    foreach(_ -> variable!(m, d), 1:n)
-
-    # Extract error function from usual_constraint
-    e1 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:all_different])(x; param, dom_size
-    )
-    e2 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:all_equal_param])(x; param, dom_size
-    )
-    e3 = (x; param=nothing, dom_size=n) -> error_f(
-        usual_constraints[:dist_different])(x; param, dom_size
-    )
-
-    # # Add constraints
-    constraint!(m, e1, 1:n)
-    constraint!(m, x -> e2(x; param=0), 1:1)
-    for i in 1:(n - 1), j in (i + 1):n, k in i:(n - 1), l in (k + 1):n
-        (i, j) < (k, l) || continue
-        constraint!(m, e3, [i, j, k, l])
-    end
-
-    # Add objective
-    objective!(m, o_dist_extrema)
-
-    return m
-end
-
 function golomb(n, L, ::Val{:JuMP})
     m = JuMP.Model(CBLS.Optimizer)
 
-    @variable(m, 1 ≤ X[1:n] ≤ L, Int)
+    @variable(m, 0 ≤ X[1:n] ≤ L, Int)
 
     @constraint(m, X in AllDifferent()) # different marks
     @constraint(m, X in Ordered()) # for output convenience, keep them ordered

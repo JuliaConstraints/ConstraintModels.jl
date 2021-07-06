@@ -5,7 +5,6 @@ function n_queens(n, ::Val{:JuMP})
     @constraint(model, Q in AllDifferent())
 
     for i in 1:n, j in i + 1:n
-        @constraint(model, [Q[i],Q[j]] in Predicate(x -> x[1] != x[2]))
         @constraint(model, [Q[i],Q[j]] in Predicate(x -> x[1] != x[2] + i - j))
         @constraint(model, [Q[i],Q[j]] in Predicate(x -> x[1] != x[2] + j - i))
     end
