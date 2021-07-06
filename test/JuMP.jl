@@ -22,30 +22,35 @@ end
     m, X = sudoku(3)
     optimize!(m)
     solution_ = value.(X)
+    @info solution_summary(m)
     display(solution_, Val(:sudoku))
 end
 
 @testset "JuMP: golomb(5)" begin
     m, X = golomb(5)
     optimize!(m)
+    @info solution_summary(m)
     @info "JuMP: golomb(5)" value.(X)
 end
 
 @testset "JuMP: magic_square(3)" begin
     m, X = magic_square(3)
     optimize!(m)
+    @info solution_summary(m)
     @info "JuMP: magic_square(3)" value.(X)
 end
 
 @testset "JuMP: n_queens(5)" begin
     m, X = n_queens(5)
     optimize!(m)
+    @info solution_summary(m)
     @info "JuMP: n_queens(5)" value.(X)
 end
 
 @testset "JuMP: qap(12)" begin
     m, X = qap(12, qap_weights, qap_distances)
     optimize!(m)
+    @info solution_summary(m)
     @info "JuMP: qap(12)" value.(X)
 end
 
@@ -66,7 +71,7 @@ end
     @objective(model, Min, ScalarFunction(objFunc))
 
     optimize!(model)
-
+    @info solution_summary(model)
     @info "JuMP: basic opt" value(x) value(y) (12*value(x)+20*value(y))
 end
 
@@ -75,6 +80,7 @@ end
     # set_optimizer_attribute(m, "iteration", 10000)
     # set_time_limit_sec(m, 120.0)
     optimize!(m)
+    @info solution_summary(m)
     @info "JuMP: $compounds_names ⟺ $mixture_name" value.(X)
 end
 

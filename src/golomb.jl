@@ -33,7 +33,7 @@ end
 function golomb(n, L, ::Val{:JuMP})
     m = JuMP.Model(CBLS.Optimizer)
 
-    @variable(m, 1 ≤ X[1:n] ≤ L, Int)
+    @variable(m, 0 ≤ X[1:n] ≤ L, Int)
 
     @constraint(m, X in AllDifferent()) # different marks
     @constraint(m, X in Ordered()) # for output convenience, keep them ordered
