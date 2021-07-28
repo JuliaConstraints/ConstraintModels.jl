@@ -72,21 +72,21 @@ end
     graph[2,5] = 1.0
     graph[3,5] = 2.0
     graph[4,5] = 3.0
-    s = solver(mincut(graph, source=1, sink=5), options =  Options(print_level = :minimal))
+    s = solver(mincut(graph; source=1, sink=5, modeler=:raw), options =  Options(print_level = :minimal))
     solve!(s)
     @info "Results mincut!"
     @info "Values: $(get_values(s))"
     @info "Sol (val): $(best_value(s))"
     @info "Sol (vals): $(!isnothing(best_value(s)) ? best_values(s) : nothing)"
 
-    s = solver(mincut(graph, source=1, sink=5, interdiction=1), options =  Options(print_level = :minimal))
+    s = solver(mincut(graph, source=1, sink=5, interdiction=1, modeler=:raw), options =  Options(print_level = :minimal))
     solve!(s)
     @info "Results 1-mincut!"
     @info "Values: $(get_values(s))"
     @info "Sol (val): $(best_value(s))"
     @info "Sol (vals): $(!isnothing(best_value(s)) ? best_values(s) : nothing)"
 
-    s = solver(mincut(graph, source=1, sink=5, interdiction=2), options =  Options(print_level = :minimal))
+    s = solver(mincut(graph, source=1, sink=5, interdiction=2, modeler=:raw), options =  Options(print_level = :minimal))
     solve!(s)
     @info "Results 2-mincut!"
     @info "Values: $(get_values(s))"

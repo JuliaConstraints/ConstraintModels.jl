@@ -91,3 +91,18 @@ end
     @info "JuMP: scheduling" value.(start_times) value.(completion_times) processing_times due_times
     @info (value.(start_times)+processing_times == value.(completion_times))
 end
+
+@testset "JuMP: Minimum Cut" begin
+    graph = zeros(5, 5)
+    graph[1,2] = 1.0
+    graph[1,3] = 2.0
+    graph[1,4] = 3.0
+    graph[2,5] = 1.0
+    graph[3,5] = 2.0
+    graph[4,5] = 3.0
+
+    model, links = mincut(graph; source=1, sink=5, interdiction=1)
+    optimize!(model)
+    @info solution_summary(model)
+    @info "JuMP: min-1-cut" value.(links)
+end

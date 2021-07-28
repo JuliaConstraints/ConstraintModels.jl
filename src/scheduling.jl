@@ -47,5 +47,10 @@ end
     scheduling(processing_time, due_date; modeler=:JuMP)
 
 Create a model for the n-queens problem with `n` queens. The `modeler` argument accepts :JuMP (default), which refer to the JuMP model.
+
+!!! warning
+
+    The model seems to have a flaw. Needs to be investigated.
+
 """
 scheduling(processing_times, due_dates; modeler=:JuMP) = scheduling(processing_times, due_dates, Val(modeler))

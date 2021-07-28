@@ -1,4 +1,4 @@
-function chemical_equilibrium(A, B, C)
+function chemical_equilibrium(A, B, C, ::Val{:JuMP})
     model = JuMP.Model(CBLS.Optimizer)
 
     n = length(C)
@@ -25,4 +25,29 @@ function chemical_equilibrium(A, B, C)
     @objective(model, Min, ScalarFunction(free_energy))
 
     return model, X
+end
+
+"""
+    chemical_equilibrium(atoms_compounds, elements_weights, standard_free_energy; modeler = :JuMP)
+
+!!! warning
+
+    Even the structure to model problems with continuous domains is available, the default solver is not yet equiped to solve such problems efficiently.
+
+# From Wikipedia
+
+In a chemical reaction, chemical equilibrium is the state in which both the reactants and products are present in concentrations which have no further tendency to change with time, so that there is no observable change in the properties of the system. This state results when the forward reaction proceeds at the same rate as the reverse reaction. The reaction rates of the forward and backward reactions are generally not zero, but they are equal. Thus, there are no net changes in the concentrations of the reactants and products. Such a state is known as dynamic equilibrium.
+"""
+function chemical_equilibrium(
+    atoms_compounds,
+    elements_weights,
+    standard_free_energy;
+    modeler = :JuMP,
+)
+    return chemical_equilibrium(
+        atoms_compounds,
+        elements_weights,
+        standard_free_energy,
+        Val(modeler)
+    )
 end
