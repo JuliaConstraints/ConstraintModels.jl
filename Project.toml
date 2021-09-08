@@ -17,7 +17,7 @@ Constraints = "0.2"
 Dictionaries = "0.3"
 JuMP = "0.21"
 LocalSearchSolvers = "0.3"
-MathOptInterface = "0.9"
+MathOptInterface = "0.9, 0.10"
 julia = "1.6"
 
 [extras]
