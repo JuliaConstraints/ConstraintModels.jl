@@ -1,7 +1,7 @@
 name = "ConstraintModels"
 uuid = "841a6ec5-cac3-4c42-9a0a-4b21c9553698"
 authors = ["Jean-Francois Baffier"]
-version = "0.1.8"
+version = "0.1.9"
 
 [deps]
 CBLS = "a3809bfe-37bb-4d48-a667-bac4c6be8d90"
@@ -13,11 +13,11 @@ MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
 
 [compat]
 CBLS = "0.1"
-Constraints = "0.2"
-Dictionaries = "0.3"
-JuMP = "0.21"
-LocalSearchSolvers = "0.3"
-MathOptInterface = "0.9, 0.10"
+Constraints = "0.5"
+Dictionaries = "0.3, 0.4"
+JuMP = "1"
+LocalSearchSolvers = "0.4"
+MathOptInterface = "1"
 julia = "1.6"
 
 [extras]
