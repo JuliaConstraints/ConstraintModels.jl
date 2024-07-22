@@ -10,16 +10,12 @@ function mincut(graph, source, sink, interdiction, ::Val{:raw})
     foreach(_ -> variable!(m, d), 0:n)
 
     # Extract error function from usual_constraint
-    e1 = (x; param=nothing, dom_size=n + 1) -> error_f(
-        usual_constraints[:ordered])(x; param, dom_size
-    )
-    e2 = (x; param=nothing, dom_size=n + 1) -> error_f(
-        usual_constraints[:all_different])(x; param, dom_size
-    )
+    e1 = (x; kargs...) -> error_f(USUAL_CONSTRAINTS[:ordered])(x; kargs...)
+    e2 = (x; kargs...) -> error_f(USUAL_CONSTRAINTS[:all_different])(x; kargs...)
 
     # Add constraint
     constraint!(m, e1, [source, separator, sink])
-    constraint!(m, e2, 1:(n + 1))
+    constraint!(m, e2, 1:(n+1))
 
     # Add objective
     objective!(m, (x...) -> o_mincut(graph, x...; interdiction))
@@ -56,6 +52,6 @@ Compute the minimum cut of a graph.
 - `interdiction`: indicates the number of forbidden links
 - `modeler`: Default to `:JuMP`.
 """
-function mincut(graph; source, sink, interdiction =0, modeler = :JuMP)
+function mincut(graph; source, sink, interdiction=0, modeler=:JuMP)
     return mincut(graph, source, sink, interdiction, Val(modeler))
 end

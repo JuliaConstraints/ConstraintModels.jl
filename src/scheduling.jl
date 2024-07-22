@@ -1,5 +1,5 @@
 function scheduling(processing_times, due_dates, ::Val{:raw})
-    m = model(; kind = :scheduling)
+    m = model(; kind=:scheduling)
     n = length(processing_times) # number of jobs
     max_time = sum(processing_times)
 

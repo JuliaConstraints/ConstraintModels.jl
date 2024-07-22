@@ -7,11 +7,11 @@ function magic_square(n, ::Val{:JuMP})
     @constraint(model, vec(X) in AllDifferent())
 
     for i in 1:n
-        @constraint(model, X[i,:] in SumEqualParam(magic_constant))
-        @constraint(model, X[:,i] in SumEqualParam(magic_constant))
+        @constraint(model, X[i, :] in AllEqual(; val=magic_constant))
+        @constraint(model, X[:, i] in AllEqual(; val=magic_constant))
     end
-    @constraint(model, [X[i,i] for i in 1:n] in SumEqualParam(magic_constant))
-    @constraint(model, [X[i,n + 1 - i] for i in 1:n] in SumEqualParam(magic_constant))
+    @constraint(model, [X[i, i] for i in 1:n] in AllEqual(; val=magic_constant))
+    @constraint(model, [X[i, n+1-i] for i in 1:n] in AllEqual(; val=magic_constant))
 
     return model, X
 end
@@ -21,12 +21,4 @@ end
 
 Create a model for the magic square problem of order `n`. The `modeler` argument accepts :JuMP (default), which refer to the solver the JuMP model.
 """
-magic_square(n; modeler = :JuMP) = magic_square(n, Val(modeler))
-
-
-
-
-
-
-
-
+magic_square(n; modeler=:JuMP) = magic_square(n, Val(modeler))
