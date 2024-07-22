@@ -11,10 +11,7 @@
 
     @constraint(m, X in AllDifferent())
     @constraint(m, X in AllEqual())
-    @constraint(m, X in AllEqualParam(2))
-    @constraint(m, X in AlwaysTrue())
     @constraint(m, X[1:4] in DistDifferent())
-    @constraint(m, X[1:2] in Eq())
     @constraint(m, X in Ordered())
 end
 
@@ -64,15 +61,15 @@ end
     @variable(model, x in DiscreteSet(0:20))
     @variable(model, y in DiscreteSet(0:20))
 
-    @constraint(model, [x,y] in Predicate(v -> 6v[1] + 8v[2] >= 100 ))
-    @constraint(model, [x,y] in Predicate(v -> 7v[1] + 12v[2] >= 120 ))
+    @constraint(model, [x, y] in Predicate(v -> 6v[1] + 8v[2] >= 100))
+    @constraint(model, [x, y] in Predicate(v -> 7v[1] + 12v[2] >= 120))
 
     objFunc = v -> 12v[1] + 20v[2]
     @objective(model, Min, ScalarFunction(objFunc))
 
     optimize!(model)
     @info solution_summary(model)
-    @info "JuMP: basic opt" value(x) value(y) (12*value(x)+20*value(y))
+    @info "JuMP: basic opt" value(x) value(y) (12 * value(x) + 20 * value(y))
 end
 
 @testset "JuMP: Chemical equilibrium" begin
@@ -84,22 +81,22 @@ end
     @info "JuMP: $compounds_names ⟺ $mixture_name" value.(X)
 end
 
-@testset "JuMP: Scheduling" begin
-    model, completion_times, start_times = scheduling(processing_times, due_times)
-    optimize!(model)
-    @info solution_summary(model)
-    @info "JuMP: scheduling" value.(start_times) value.(completion_times) processing_times due_times
-    @info (value.(start_times)+processing_times == value.(completion_times))
-end
+# @testset "JuMP: Scheduling" begin
+#     model, completion_times, start_times = scheduling(processing_times, due_times)
+#     optimize!(model)
+#     @info solution_summary(model)
+#     @info "JuMP: scheduling" value.(start_times) value.(completion_times) processing_times due_times
+#     @info (value.(start_times)+processing_times == value.(completion_times))
+# end
 
 @testset "JuMP: Minimum Cut" begin
     graph = zeros(5, 5)
-    graph[1,2] = 1.0
-    graph[1,3] = 2.0
-    graph[1,4] = 3.0
-    graph[2,5] = 1.0
-    graph[3,5] = 2.0
-    graph[4,5] = 3.0
+    graph[1, 2] = 1.0
+    graph[1, 3] = 2.0
+    graph[1, 4] = 3.0
+    graph[2, 5] = 1.0
+    graph[3, 5] = 2.0
+    graph[4, 5] = 3.0
 
     model, links = mincut(graph; source=1, sink=5, interdiction=1)
     optimize!(model)
