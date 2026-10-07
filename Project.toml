@@ -1,0 +1,34 @@
+name = "ConstraintModels"
+uuid = "841a6ec5-cac3-4c42-9a0a-4b21c9553698"
+authors = ["Jean-Francois Baffier"]
+version = "0.3.0"
+
+[deps]
+CBLS = "a3809bfe-37bb-4d48-a667-bac4c6be8d90"
+ConstraintDomains = "5800fd60-8556-4464-8d61-84ebf7a0bedb"
+Constraints = "30f324ab-b02d-43f0-b619-e131c61659f7"
+Dictionaries = "85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4"
+EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
+JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+LocalSearchSolvers = "2b10edaa-728d-4283-ac71-07e312d6ccf3"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+TestItems = "1c621080-faea-4a02-84b6-bbd5e436b8fe"
+
+[compat]
+CBLS = "0.2"
+ConstraintDomains = "0.4"
+Constraints = "0.5"
+Dictionaries = "0.3, 0.4"
+EzXML = "1"
+JuMP = "1"
+LocalSearchSolvers = "0.4"
+MathOptInterface = "1"
+TestItems = "1"
+julia = "1.12"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+TestItemRunner = "f8b46487-2199-4994-9208-9a1283c18c0a"
+
+[targets]
+test = ["Test", "TestItemRunner"]

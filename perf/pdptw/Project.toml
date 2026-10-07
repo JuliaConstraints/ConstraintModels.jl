@@ -1,0 +1,38 @@
+[deps]
+CBLS = "a3809bfe-37bb-4d48-a667-bac4c6be8d90"
+CompositionalNetworks = "4b67e4b5-442d-4ef5-b760-3f5df3a57537"
+ConstraintCommons = "e37357d9-0691-492f-a822-e5ea6a920954"
+ConstraintDomains = "5800fd60-8556-4464-8d61-84ebf7a0bedb"
+ConstraintModels = "841a6ec5-cac3-4c42-9a0a-4b21c9553698"
+ConstraintProgrammingExtensions = "b65d079e-ed98-51d9-b0db-edee61a5c5f8"
+Constraints = "30f324ab-b02d-43f0-b619-e131c61659f7"
+HiGHS = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
+JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+LocalSearchSolvers = "2b10edaa-728d-4283-ac71-07e312d6ccf3"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+MetaStrategist = "989f9ba8-86ac-4138-b458-047055bae907"
+PatternFolds = "c18a7f1d-76ad-4ce4-950d-5419b888513b"
+QUBOConstraints = "110b7fcc-6942-4061-a625-86e03d1de7cf"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+XCSP3Bridges = "2c268c00-805a-4bbc-9664-dd5edd963493"
+
+[sources]
+CBLS = {path = "../../../CBLS"}
+CompositionalNetworks = {path = "../../../CompositionalNetworks"}
+ConstraintCommons = {path = "../../../ConstraintCommons"}
+ConstraintDomains = {path = "../../../ConstraintDomains"}
+ConstraintModels = {path = "../.."}
+ConstraintProgrammingExtensions = {path = "../../../ConstraintProgrammingExtensions"}
+Constraints = {path = "../../../Constraints"}
+LocalSearchSolvers = {path = "../../../LocalSearchSolvers"}
+MetaStrategist = {path = "../../../MetaStrategist"}
+PatternFolds = {path = "../../../PatternFolds"}
+QUBOConstraints = {path = "../../../QUBOConstraints"}
+XCSP3Bridges = {path = "../../../XCSP3Bridges"}
+
+[compat]
+HiGHS = "=1.26.0"
+JuMP = "=1.32.0"
+julia = "1.12"
