@@ -47,7 +47,7 @@ version = "1.0.9+0"
 deps = ["ConstraintCommons", "ConstraintDomains", "ConstraintProgrammingExtensions", "Constraints", "Intervals", "JuMP", "Lazy", "LocalSearchSolvers", "MathOptInterface", "Pkg", "TestItems"]
 path = "../../../CBLS"
 uuid = "a3809bfe-37bb-4d48-a667-bac4c6be8d90"
-version = "0.2.2"
+version = "0.2.3"
 
 [[deps.CEnum]]
 git-tree-sha1 = "389ad5c84de1ae7cf0e28e381131c98ea87d54fc"
@@ -118,7 +118,7 @@ version = "1.5.5+2"
 deps = ["ConstraintCommons", "ConstraintDomains", "Dictionaries", "Distances", "ExproniconLite", "JuliaFormatter", "OrderedCollections", "Random", "TestItems"]
 path = "../../../CompositionalNetworks"
 uuid = "4b67e4b5-442d-4ef5-b760-3f5df3a57537"
-version = "0.6.1"
+version = "0.6.2"
 
     [deps.CompositionalNetworks.extensions]
     GeneticExt = "Evolutionary"
@@ -134,7 +134,7 @@ version = "0.6.1"
 deps = ["Dictionaries", "TestItems"]
 path = "../../../ConstraintCommons"
 uuid = "e37357d9-0691-492f-a822-e5ea6a920954"
-version = "0.3.0"
+version = "0.3.1"
 
 [[deps.ConstraintDomains]]
 deps = ["ConstraintCommons", "Intervals", "PatternFolds", "Random", "StatsBase", "TestItems"]
@@ -152,13 +152,13 @@ version = "0.3.0"
 deps = ["LinearAlgebra", "MathOptInterface", "Test"]
 path = "../../../ConstraintProgrammingExtensions"
 uuid = "b65d079e-ed98-51d9-b0db-edee61a5c5f8"
-version = "0.8.0"
+version = "0.8.1"
 
 [[deps.Constraints]]
 deps = ["CompositionalNetworks", "ConstraintCommons", "ConstraintDomains", "DataFrames", "Dictionaries", "MacroTools", "PrettyTables", "TestItems"]
 path = "../../../Constraints"
 uuid = "30f324ab-b02d-43f0-b619-e131c61659f7"
-version = "0.5.10"
+version = "0.5.11"
 
 [[deps.Crayons]]
 git-tree-sha1 = "54b76cbb40d9a0f5368c880725b2f141da77c94f"
@@ -471,7 +471,7 @@ version = "1.13.0"
 deps = ["CompositionalNetworks", "ConstraintDomains", "Constraints", "Dates", "Dictionaries", "Distributed", "JSON", "Lazy", "Logging", "Printf", "ProgressBars", "ProgressMeter", "Random", "Term", "TestItems"]
 path = "../../../LocalSearchSolvers"
 uuid = "2b10edaa-728d-4283-ac71-07e312d6ccf3"
-version = "0.4.10"
+version = "0.4.11"
 weakdeps = ["MetaStrategist"]
 
     [deps.LocalSearchSolvers.extensions]
@@ -535,7 +535,7 @@ version = "1.54.0"
 deps = ["SHA", "TOML", "TestItems"]
 path = "../../../MetaStrategist"
 uuid = "989f9ba8-86ac-4138-b458-047055bae907"
-version = "0.1.0"
+version = "0.1.1"
 
     [deps.MetaStrategist.extensions]
     MetaStrategistMetaheuristicsExt = "Metaheuristics"
@@ -643,7 +643,7 @@ version = "3.0.0"
 deps = ["Intervals", "Lazy", "Random", "TestItems"]
 path = "../../../PatternFolds"
 uuid = "c18a7f1d-76ad-4ce4-950d-5419b888513b"
-version = "0.2.6"
+version = "0.2.7"
 
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "Random", "SHA", "TOML", "Tar", "UUIDs", "Zstd_jll", "p7zip_jll"]
