@@ -77,7 +77,10 @@ function validate_solution(instance::BenchmarkInstance{PickupDeliveryProblem}, r
     distance = 0.0
     for (r, route) in enumerate(normalized)
         clock = d.earliest[1]
-        load = big(0)
+        # A normalized route has at most typemax(Int) entries, each an Int
+        # demand. On 32/64-bit platforms even that product fits in Int128,
+        # including invalid routes with repeated visits and extreme demands.
+        load = Int128(0)
         previous = 1
         for (order, node) in enumerate(route)
             counts[node] += 1

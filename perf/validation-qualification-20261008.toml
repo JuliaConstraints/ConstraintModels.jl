@@ -1,0 +1,52 @@
+runtime = "1.13.1"
+gc_threads = 1
+frozen_base = "f360e193299dd45ecbf53a8d3c76e36dabc8846d"
+differential_matches = 10000
+timing_qualification = "Operational matched-work validator calls while other tasks were active. Full valid flag, objective and ordered diagnostics matched the frozen BigInt implementation. No controlled scaling claim."
+julia_threads = 2
+blas_threads = 1
+source_sha256 = "e2c5c8aee34d1bc7071747bcc599183b56371922137402e5ab3935a55acff2a7"
+cpu_affinity = [4, 6]
+
+[[measurements]]
+method = "frozen_bigint"
+bytes = 18984
+customers = 106
+instance = "lc101.txt"
+minimum_ns = 6202.0
+allocations = 445
+[[measurements]]
+method = "exact_int128"
+bytes = 10080
+customers = 106
+instance = "lc101.txt"
+minimum_ns = 1887.0
+allocations = 127
+[[measurements]]
+method = "frozen_bigint"
+bytes = 72656
+customers = 422
+instance = "lc1_4_1.txt"
+minimum_ns = 24729.0
+allocations = 1715
+[[measurements]]
+method = "exact_int128"
+bytes = 37192
+customers = 422
+instance = "lc1_4_1.txt"
+minimum_ns = 10203.0
+allocations = 449
+[[measurements]]
+method = "frozen_bigint"
+bytes = 171280
+customers = 1054
+instance = "lc1_10_1.txt"
+minimum_ns = 57838.0
+allocations = 4243
+[[measurements]]
+method = "exact_int128"
+bytes = 82696
+customers = 1054
+instance = "lc1_10_1.txt"
+minimum_ns = 20986.0
+allocations = 1081

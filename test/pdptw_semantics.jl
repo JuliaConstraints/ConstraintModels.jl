@@ -5,6 +5,41 @@ if !isdefined(@__MODULE__, :Benchmarks)
 end
 using .Benchmarks
 
+@testset "PDPTW load arithmetic remains exact at native integer limits" begin
+    @test Sys.WORD_SIZE in (32, 64)
+    for demand in (typemin(Int), typemax(Int))
+        bound = BigInt(typemax(Int)) * BigInt(demand)
+        @test typemin(Int128) <= bound <= typemax(Int128)
+    end
+    for demands in (
+            [typemax(Int), typemax(Int), -typemax(Int), -typemax(Int)],
+            [typemin(Int), typemin(Int), typemax(Int), typemax(Int)],
+            [typemax(Int), 1, -1, -typemax(Int)],
+        )
+        wide = Int128(0)
+        reference = big(0)
+        for demand in demands
+            wide += demand
+            reference += demand
+            @test wide == reference
+            @test (0 <= wide <= typemax(Int)) ==
+                  (0 <= reference <= typemax(Int))
+        end
+    end
+
+    amount = typemax(Int)
+    data = PickupDeliveryProblem(2, amount, zeros(5, 2),
+        [0, amount, -amount, amount, -amount], zeros(5), ones(5), zeros(5),
+        [(2, 3), (4, 5)])
+    instance = BenchmarkInstance("extreme-load", data)
+    @test validate_solution(instance, [[2, 3], [4, 5]]).valid
+    result = validate_solution(instance, [[2, 4, 3, 5]])
+    @test result.errors == [:capacity]
+    @test !result.valid
+    # Duplicated invalid visits must not wrap a positive prefix into a valid load.
+    @test :capacity in validate_solution(instance, [[2, 2, 3, 4, 5]]).errors
+end
+
 @testset "Reconstructed PDPTW semantics" begin
     coordinates = [0. 0.; 1 1; 2 1; -1 1; -2 1]
     demands = [0, 1, -1, 1, -1]
