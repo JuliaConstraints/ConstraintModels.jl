@@ -1,0 +1,24 @@
+schema_version = "perfchecker-scenario-catalog/1"
+root = ".."
+
+[[scenarios]]
+id = "complete-pdptw-validation"
+source = "validation_cases.jl"
+factory = "ValidationCases.validation"
+implementation = "workspace"
+collectors = ["benchmark", "chairmark", "profile", "profile_alloc"]
+fixtures = ["/home/azzaare/Gits/Benchmarks/LiLim/data/raw/pdp_100/lc101.txt"]
+[scenarios.parameters]
+method = "workspace"
+instance = "/home/azzaare/Gits/Benchmarks/LiLim/data/raw/pdp_100/lc101.txt"
+
+[[scenarios]]
+id = "complete-pdptw-validation"
+source = "validation_cases.jl"
+factory = "ValidationCases.validation"
+implementation = "allocated"
+collectors = ["benchmark", "chairmark"]
+fixtures = ["/home/azzaare/Gits/Benchmarks/LiLim/data/raw/pdp_100/lc101.txt"]
+[scenarios.parameters]
+method = "allocated"
+instance = "/home/azzaare/Gits/Benchmarks/LiLim/data/raw/pdp_100/lc101.txt"

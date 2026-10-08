@@ -1,0 +1,457 @@
+recorded_utc = "2026-10-08T20:31:53.796"
+case_sha256 = "6f682eafdc0693803d5cc718d6ac8fcb8cd3760992d28155e388bbda6b9b4452"
+instance_sha256 = "1e525ef3d65d15cdcd65974704bd640487424a1700061895d919d60ad210588f"
+julia_threads = 2
+cpu_affinity = [4, 6]
+artifact_policy = "Raw redacted heaps were created under OS temporary directories and removed after collecting summary evidence; no snapshot path is retained as a deliverable."
+timing_qualification = "Operational same-input measurements while other tasks were active; no controlled scaling claim. Preparation and verification excluded from measurements."
+blas_threads = 1
+resource_detail_recorded_utc = "2026-10-08T20:42:50.206"
+remaining_findings = "Aqua found eight pre-existing ambiguities in Sudoku display methods. AllocCheck found buffer-growth paths and the independent returned error-vector copy; measured warm validation allocates 64 bytes in two objects, preserving caller-owned diagnostics."
+runtime = "1.13.1"
+gc_threads = 1
+source_sha256 = "ca9ee24b92e638ec716e4b7de8313731a29adb1d65cf2d9e22f325c9270b8e43"
+source_contract = "One workspace per lane; full original-problem validation preserved. Original allocating oracle remains independent. Returned errors are copied to preserve diagnostic ownership."
+
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+message = ""
+implementation = "workspace"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 1.64e-6
+    maximum = 2.418e-6
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2
+    maximum = 2
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 64
+    maximum = 64
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+message = ""
+implementation = "workspace"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 1.711e-6
+    maximum = 2.666e-6
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 2.0
+    maximum = 2.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 64.0
+    maximum = 64.0
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile"
+message = ""
+implementation = "workspace"
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "profile_alloc"
+message = ""
+implementation = "workspace"
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "benchmark"
+message = ""
+implementation = "allocated"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.287e-6
+    maximum = 7.058e-6
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 127
+    maximum = 127
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 10080
+    maximum = 10080
+[[collectors]]
+correctness = "passed"
+status = "complete"
+collector = "chairmark"
+message = ""
+implementation = "allocated"
+
+    [collectors."julia.wall.time"]
+    samples = 5
+    minimum = 2.68e-6
+    maximum = 4.303e-6
+
+    [collectors.profile_alloc]
+
+    [collectors.profile]
+
+    [collectors."julia.alloc.count"]
+    samples = 5
+    minimum = 127.0
+    maximum = 127.0
+
+    [collectors."julia.alloc.bytes"]
+    samples = 5
+    minimum = 10080.0
+    maximum = 10080.0
+
+[tests]
+frozen_differential_routes = 20000
+native_extreme_integer_assertions = 31
+workspace_assertions = 7789
+
+[[resource_details]]
+tool = "gc"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: 0.0 ms in GC, 320 allocated bytes in total. Diagnostic counters are process-wide."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+message = ""
+limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.gc_seconds]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.allocated_bytes]
+        minimum = 64
+        maximum = 64
+
+        [resource_details.measurements.compile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.operation_seconds]
+        minimum = 1.636e-6
+        maximum = 2.29e-6
+
+        [resource_details.measurements.recompile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.lock_conflicts]
+        minimum = 0
+        maximum = 0
+[[resource_details]]
+tool = "memory"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = ""
+message = ""
+limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.state_before_bytes]
+        minimum = 19841
+        maximum = 19841
+
+        [resource_details.measurements.state_after_bytes]
+        minimum = 19841
+        maximum = 19841
+
+        [resource_details.measurements.reachable_state_growth_bytes]
+        minimum = 0
+        maximum = 0
+
+        [resource_details.measurements.state_and_result_bytes]
+        minimum = 19921
+        maximum = 19921
+[[resource_details]]
+tool = "locks"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "5 operations: 0 observed lock conflicts. Counts do not measure waiting duration."
+tool_version = ""
+status = "complete"
+heap_summary = []
+analysis_scope = ""
+message = ""
+limitations = ["Counts do not measure blocked duration or prove a scalability bottleneck.", "Only runtime-reported lock conflicts are covered; native locks and device barriers are not."]
+
+    [resource_details.measurements]
+    samples = 5
+
+        [resource_details.measurements.gc_seconds]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.allocated_bytes]
+        minimum = 64
+        maximum = 64
+
+        [resource_details.measurements.compile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.operation_seconds]
+        minimum = 1.621e-6
+        maximum = 2.38e-6
+
+        [resource_details.measurements.recompile_time]
+        minimum = 0.0
+        maximum = 0.0
+
+        [resource_details.measurements.lock_conflicts]
+        minimum = 0
+        maximum = 0
+[[resource_details]]
+tool = "heap"
+findings = []
+correctness = "passed"
+quality = "not_checked"
+summary = "Redacted heap snapshot captured after verification. Covers GC-managed objects in the whole worker; native and device memory are excluded."
+tool_version = ""
+status = "complete"
+message = ""
+analysis_scope = ""
+limitations = ["Snapshot covers the entire diagnostic process, not just the scenario.", "Only GC-managed memory is represented; native and device memory are excluded.", "Snapshot capture is intrusive and its duration is not baseline performance evidence."]
+
+    [resource_details.measurements]
+
+    [[resource_details.heap_summary]]
+    bytes = 186130865
+    kind = "heap_snapshot"
+    sha256 = "889ce1a7892ade84a4105256b51bf36c75916b423f644fd0f1ca53432a63e3ff"
+    redacted = true
+
+[[diagnostics]]
+correctness = "not_checked"
+status = "complete"
+message = ""
+tool = "aqua"
+analysis_scope = ""
+quality = "failed"
+
+    [diagnostics.measurements]
+
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "quality.aqua"
+    message = "Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken."
+
+        [diagnostics.findings.evidence]
+
+        [diagnostics.findings.location]
+        line = 0
+        file = ""
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "jet"
+analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "alloccheck"
+analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+quality = "not_checked"
+
+    [diagnostics.measurements]
+
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Int64} in ./boot.jl:649\n  | return $(Expr(:new, :self, :(memoryref(mem)), :((m,))))\n\nStacktrace:\n [1] Array\n   @ ./boot.jl:649 [inlined]\n [2] getindex\n   @ ./array.jl:436 [inlined]\n [3] validate_solution(instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace; atol::Float64)\n   @ Main.var\"##SharedCase#142\".ValidationCases.Benchmarks ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:161\n [4] validate_solution\n   @ ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:143 [inlined]\n [5] buffered(state::@NamedTuple{instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace})\n   @ Main.var\"##SharedCase#142\".ValidationCases ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/perf/validation_cases.jl:6\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 649
+        file = "./boot.jl"
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Vector{Symbol} in ./array.jl:386\n  | return $(Expr(:new, :(typeof(a)), :(memoryref(newmem)), :(a.size)))\n\nStacktrace:\n [1] copy\n   @ ./array.jl:386 [inlined]\n [2] validate_solution(instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace; atol::Float64)\n   @ Main.var\"##SharedCase#142\".ValidationCases.Benchmarks ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:207\n [3] validate_solution\n   @ ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:143 [inlined]\n [4] buffered(state::@NamedTuple{instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace})\n   @ Main.var\"##SharedCase#142\".ValidationCases ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/perf/validation_cases.jl:6\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 386
+        file = "./array.jl"
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Symbol} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n [1] GenericMemory\n   @ ./boot.jl:588 [inlined]\n [2] copy\n   @ ./array.jl:384 [inlined]\n [3] validate_solution(instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace; atol::Float64)\n   @ Main.var\"##SharedCase#142\".ValidationCases.Benchmarks ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:207\n [4] validate_solution\n   @ ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:143 [inlined]\n [5] buffered(state::@NamedTuple{instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace})\n   @ Main.var\"##SharedCase#142\".ValidationCases ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/perf/validation_cases.jl:6\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 588
+        file = "./boot.jl"
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Symbol} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n [1] GenericMemory\n   @ ./boot.jl:588 [inlined]\n [2] array_new_memory\n   @ ./array.jl:1101 [inlined]\n [3] _growend_internal!(a::Vector{Symbol}, delta::Int64, len::Int64)\n   @ Base ./array.jl:1181\n [4] multiple call sites\n   @ unknown:0\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 588
+        file = "./boot.jl"
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Vector{Int64}} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n [1] GenericMemory\n   @ ./boot.jl:588 [inlined]\n [2] array_new_memory\n   @ ./array.jl:1101 [inlined]\n [3] _growend_internal!(a::Vector{Vector{Int64}}, delta::Int64, len::Int64)\n   @ Base ./array.jl:1181\n [4] _growend!\n   @ ./array.jl:1205 [inlined]\n [5] _push!\n   @ ./array.jl:1348 [inlined]\n [6] push!\n   @ ./array.jl:1345 [inlined]\n [7] validate_solution(instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace; atol::Float64)\n   @ Main.var\"##SharedCase#142\".ValidationCases.Benchmarks ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:161\n [8] validate_solution\n   @ ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/src/benchmarks/Benchmarks.jl:143 [inlined]\n [9] buffered(state::@NamedTuple{instance::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.BenchmarkInstance{Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PickupDeliveryProblem}, routes::Vector{Vector{Int64}}, workspace::Main.var\"##SharedCase#142\".ValidationCases.Benchmarks.PDPTWValidationWorkspace})\n   @ Main.var\"##SharedCase#142\".ValidationCases ~/.julia/dev/JuliaConstraintsPerfNightICN/ConstraintModels/perf/validation_cases.jl:6\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 588
+        file = "./boot.jl"
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "allocation.potential"
+    message = """Allocation of Memory{Int64} in ./boot.jl:588\n  | (self::Type{GenericMemory{kind,T,addrspace}})(::UndefInitializer, m::Int) where {T,addrspace,kind} = memorynew(self, m)\n\nStacktrace:\n [1] GenericMemory\n   @ ./boot.jl:588 [inlined]\n [2] array_new_memory\n   @ ./array.jl:1101 [inlined]\n [3] _growend_internal!(a::Vector{Int64}, delta::Int64, len::Int64)\n   @ Base ./array.jl:1181\n [4] _growend!\n   @ ./array.jl:1205 [inlined]\n [5] resize!(a::Vector{Int64}, nl_::Int64)\n   @ Base ./array.jl:1540\n [6] multiple call sites\n   @ unknown:0\n"""
+
+        [diagnostics.findings.evidence]
+        report_type = "AllocCheck.AllocationSite"
+        analysis = "AllocCheck.check_allocs"
+
+        [diagnostics.findings.location]
+        line = 588
+        file = "./boot.jl"
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "snoopcompile"
+analysis_scope = "first complete scenario lifecycle in diagnostic process"
+quality = "not_checked"
+
+    [diagnostics.measurements]
+    inference_seconds = 1.537799835205078e-5
+
+    [[diagnostics.findings]]
+    severity = "warning"
+    rule_id = "compilation.inference"
+    message = "InferenceTimingNode: 0.000014/0.000015 on Base.Compiler.Timings.ROOT() with 0 direct children"
+
+        [diagnostics.findings.evidence]
+        inference_seconds = 1.537799835205078e-5
+
+        [diagnostics.findings.location]
+        line = 0
+        file = ""
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "latency"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+    first_case_seconds = 0.210680354
+    load_seconds = 1.241818503
+    warm_case_seconds = 4.2988e-5
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "gc"
+analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "memory"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "locks"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
+[[diagnostics]]
+correctness = "passed"
+status = "complete"
+message = ""
+tool = "heap"
+analysis_scope = ""
+quality = "not_checked"
+findings = []
+
+    [diagnostics.measurements]
