@@ -1,0 +1,91 @@
+recorded_utc = "2026-10-08T21:38:16.169"
+instantiate = "Three offline instantiate calls, with registry updates and automatic precompilation disabled, preserved exact Project and corrected Manifest bytes; the third call followed sibling-layout relocation."
+pdptw_tests = "Existing exact native-load semantics and complete reusable validation workspace tests passed in the portable environment."
+project_sha256 = "2a48b5e578f38033a568c0d03697d31b86b1bed65b39086515c6648276cf457b"
+original_manifest_sha256 = "9b767180147d7dd41d5b34c1b1958a13ba5acf979a54ba316ec78ad287e5deaf"
+manifest_sha256 = "2419a72b3d32007e3ebc2288819111fd9d6f56c09d7d1d788c181c7b80c10ab8"
+project_resolve_hash = "bc2f52da7400514b6a3726bf6fab70088fa35580"
+pdptw_test_assertions = 7845
+julia_threads = 2
+native_smoke = "All twelve manifested owned packages loaded. JuMP 1.32.0 / MOI 1.54.0 / HiGHS 1.26.0 loaded; a serial x>=1 LP solved to x=1 with optimal status. QC.ValuePairGuidance instantiated and evaluated its expected six-unit energy."
+cpu_affinity = [4, 6]
+native_solver_threads = 1
+layout = "Temporary sibling Git archive snapshots at the exact immutable integration V2 commits. Corrected CM environment copied into the archived CM package. Temporary layout removed after verification."
+optional_ghost = "GHOST is recorded as the thirteenth cohort snapshot; the PDPTW Project does not request it, so no GHOST edge was added."
+blas_threads = 1
+change = "Only add Random to the QUBOConstraints dependency list. Exact Project, manifest header/project hash, sibling relative paths, package versions, all external entries and tree hashes unchanged."
+runtime = "1.13.1"
+gc_threads = 1
+original_project_resolve_hash = "bc2f52da7400514b6a3726bf6fab70088fa35580"
+initial_layout_finding = "Linking dependencies outside the temporary sibling layout changed Pkg's normalized source-path hash and caused a stale-manifest warning. Real immutable sibling Git archives and their relocated layout retain the original project hash and are recognized as current. No hash correction was required."
+
+[external_versions]
+HiGHS_jll = "1.15.1+3"
+JuMP = "1.32.0"
+HiGHS = "1.26.0"
+MathOptInterface = "1.54.0"
+
+[cohort.ConstraintModels]
+commit = "a66012ae119055e0d2922b786f930c1307cec120"
+manifested = true
+project_sha256 = "6a2558e9da429ad182a8683e23b8ab8bd8da5daab1d87372c773ee198928047a"
+
+[cohort.ConstraintCommons]
+commit = "0035f603a9564d2d19a0a1822d8c81b0a6e517c3"
+manifested = true
+project_sha256 = "9a3579124583eea5f109f8d7265df1f45d4c87999f358b1ee4b402762673095a"
+
+[cohort.ConstraintDomains]
+commit = "19b4b9082ac3588e417d0c711f961dd5008e8653"
+manifested = true
+project_sha256 = "dfc78e96e84887e652ffc25485dc4672da0bb98d500b4e594b0bb0ba6104119c"
+
+[cohort.Constraints]
+commit = "ba5d8afcebde2515870ecc35a2592ecc002db86d"
+manifested = true
+project_sha256 = "1b7ec62d2b0a22935c18c8c9bca6627dfbd01ab7d0f86358d7225cb1645e9353"
+
+[cohort.CBLS]
+commit = "e2be8b96e993fdeb310b137034d3af48aa9a120b"
+manifested = true
+project_sha256 = "b1782bc2432e50b59c815758dd8466210f1fff280e240fcf3e3adfd67ea0a6e8"
+
+[cohort.MetaStrategist]
+commit = "3d891e069e0e9993c7239e3b7091833b6756529c"
+manifested = true
+project_sha256 = "140564b483f1120040b2b31952cbc7b7bb1cd98598292a7a5e36aa78212f5b15"
+
+[cohort.PatternFolds]
+commit = "440a087e85350e23e8efb6b6dbe449ed891549ef"
+manifested = true
+project_sha256 = "8d86fa78c3c7e846e5dba5a36284e731b351ae6662f9fabbf3b112487bcf6e56"
+
+[cohort.XCSP3Bridges]
+commit = "1020bd171857054fd5907b16f687dd925c6cf65a"
+manifested = true
+project_sha256 = "d7c2fcfabc911df2684e6f82d79886ad761514bcd66ee47c010de040866cc277"
+
+[cohort.GHOST]
+commit = "f8943157cb5fc4e089e9f81cba2119d6cd15bfa5"
+manifested = false
+project_sha256 = "7d42390824486914146718d2f6f99a67040b506eaa3a68f212bb026e5182e799"
+
+[cohort.QUBOConstraints]
+commit = "c9e780d0b68960e264959d979158b6ce116938e5"
+manifested = true
+project_sha256 = "2c2642e996f801573478472d1d5c3d558bc3b9e7d2db9dffa16c799602fa1dcb"
+
+[cohort.CompositionalNetworks]
+commit = "d64154d04555a1c0a42f89e8896ae518b43c710c"
+manifested = true
+project_sha256 = "c7c15d5a6f6c2c24f8da6c2577a1dbaa4ccbf2be9f5fc562e5a859cf39b52dbe"
+
+[cohort.ConstraintProgrammingExtensions]
+commit = "4c3ac2af6f1575dae7148ff6e253c6a4d974f92c"
+manifested = true
+project_sha256 = "c334c1831963ff58058a751b4a8ea6fbe2556ab3124b53a140307fbf7c714875"
+
+[cohort.LocalSearchSolvers]
+commit = "35671c8daba2a293dd431dfe80f59da73bc7596d"
+manifested = true
+project_sha256 = "b7ef871b1be30047b50053956924848097760ccd1d19da2bce5ff56f7c9cdf53"

@@ -725,7 +725,7 @@ uuid = "43287f4e-b6f4-7ad1-bb20-aadabca52c3d"
 version = "1.4.0"
 
 [[deps.QUBOConstraints]]
-deps = ["ConstraintDomains", "LinearAlgebra", "SHA", "SparseArrays", "TOML", "TestItems"]
+deps = ["ConstraintDomains", "LinearAlgebra", "Random", "SHA", "SparseArrays", "TOML", "TestItems"]
 path = "../../../QUBOConstraints"
 uuid = "110b7fcc-6942-4061-a625-86e03d1de7cf"
 version = "0.2.2"
