@@ -1,12 +1,14 @@
-runtime = "1.13.1"
-gc_threads = 1
+workspace_contract = "One workspace per validation lane; complete original checks; objectives and copied ordered diagnostics independent of reusable buffers. Warmed call allocation is the caller-owned diagnostics vector."
 frozen_base = "f360e193299dd45ecbf53a8d3c76e36dabc8846d"
 differential_matches = 10000
-timing_qualification = "Operational matched-work validator calls while other tasks were active. Full valid flag, objective and ordered diagnostics matched the frozen BigInt implementation. No controlled scaling claim."
 julia_threads = 2
-blas_threads = 1
-source_sha256 = "e2c5c8aee34d1bc7071747bcc599183b56371922137402e5ab3935a55acff2a7"
+workspace_frozen_differential_matches = 20000
 cpu_affinity = [4, 6]
+timing_qualification = "Operational matched-work validator calls while other tasks were active. Full valid flag, objective and ordered diagnostics matched the frozen BigInt implementation. No controlled scaling claim."
+blas_threads = 1
+runtime = "1.13.1"
+gc_threads = 1
+source_sha256 = "ca9ee24b92e638ec716e4b7de8313731a29adb1d65cf2d9e22f325c9270b8e43"
 
 [[measurements]]
 method = "frozen_bigint"
@@ -50,3 +52,24 @@ customers = 1054
 instance = "lc1_10_1.txt"
 minimum_ns = 20986.0
 allocations = 1081
+[[measurements]]
+method = "explicit_workspace"
+bytes = 64
+customers = 106
+instance = "lc101.txt"
+minimum_ns = 1533.0
+allocations = 2
+[[measurements]]
+method = "explicit_workspace"
+bytes = 64
+customers = 422
+instance = "lc1_4_1.txt"
+minimum_ns = 6353.0
+allocations = 2
+[[measurements]]
+method = "explicit_workspace"
+bytes = 64
+customers = 1054
+instance = "lc1_10_1.txt"
+minimum_ns = 16101.0
+allocations = 2

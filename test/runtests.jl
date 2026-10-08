@@ -13,6 +13,7 @@ using TestItemRunner
     include("MOI_wrapper.jl")
     include("JuMP.jl")
     include("pdptw_semantics.jl")
+    include("pdptw_workspace.jl")
 end
 
 @run_package_tests

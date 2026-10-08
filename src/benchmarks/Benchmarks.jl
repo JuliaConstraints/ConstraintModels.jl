@@ -3,6 +3,7 @@ module Benchmarks
 
 export BenchmarkInstance, PickupDeliveryProblem, read_benchmark, validate_solution
 export SEMANTICS_VERSION
+export PDPTWValidationWorkspace
 const SEMANTICS_VERSION = "pdptw-semantics-rebuild/1"
 
 struct BenchmarkInstance{D}
@@ -107,6 +108,104 @@ function validate_solution(instance::BenchmarkInstance{PickupDeliveryProblem}, r
     end
     isfinite(distance) || push!(errors, :nonfinite_distance)
     return (; valid=isempty(errors), objective=(vehicles=length(normalized), distance), errors=unique(errors))
+end
+
+"""
+    PDPTWValidationWorkspace()
+
+Reusable normalization and visit buffers for one validation lane. A workspace
+must not be shared by concurrent calls. Returned objectives and diagnostics own
+their storage and remain valid after the next call.
+"""
+struct PDPTWValidationWorkspace
+    normalized::Vector{Vector{Int}}
+    route_of::Vector{Int}
+    position::Vector{Int}
+    counts::Vector{Int}
+    errors::Vector{Symbol}
+end
+PDPTWValidationWorkspace() =
+    PDPTWValidationWorkspace(Vector{Int}[], Int[], Int[], Int[], Symbol[])
+
+function _validation_error!(workspace::PDPTWValidationWorkspace, error::Symbol)
+    # The allocating oracle returns unique errors in first-occurrence order.
+    error in workspace.errors || push!(workspace.errors, error)
+    return nothing
+end
+
+"""
+    validate_solution(instance, routes, workspace::PDPTWValidationWorkspace; atol=1e-8)
+
+Run the complete original validator using caller-owned buffers. This overload
+checks every original constraint, including rejected and duplicate visits; it
+does not use solver scores or prior validation as an admission shortcut.
+"""
+function validate_solution(instance::BenchmarkInstance{PickupDeliveryProblem}, routes,
+        workspace::PDPTWValidationWorkspace; atol=1e-8)
+    isfinite(atol) && 0 <= atol <= 1e-6 || throw(ArgumentError("invalid time tolerance"))
+    d = instance.data
+    n = length(d.demand)
+    empty!(workspace.errors)
+    for buffer in (workspace.route_of, workspace.position, workspace.counts)
+        resize!(buffer, n)
+        fill!(buffer, 0)
+    end
+    vehicles = 0
+    for route in routes
+        if isempty(route) || !all(x -> x isa Real && isfinite(x) && isinteger(x) && 2 <= x <= n, route)
+            _validation_error!(workspace, :invalid_route)
+            continue
+        end
+        vehicles += 1
+        if vehicles > length(workspace.normalized)
+            push!(workspace.normalized, Int[])
+        end
+        normalized = workspace.normalized[vehicles]
+        resize!(normalized, length(route))
+        # Preserve the allocating oracle's conversion contract for other
+        # containers, including its rejection of unsupported tuple routes.
+        source = route isa AbstractVector ? route : convert(Vector{Int}, Int.(route))
+        for (index, node) in enumerate(source)
+            normalized[index] = Int(node)
+        end
+    end
+    vehicles <= d.vehicles || _validation_error!(workspace, :fleet)
+    distance = 0.0
+    for r in 1:vehicles
+        route = workspace.normalized[r]
+        clock = d.earliest[1]
+        load = Int128(0)
+        previous = 1
+        for (order, node) in enumerate(route)
+            workspace.counts[node] += 1
+            workspace.route_of[node], workspace.position[node] = r, order
+            travel = hypot(d.coordinates[node, 1] - d.coordinates[previous, 1],
+                d.coordinates[node, 2] - d.coordinates[previous, 2])
+            distance += travel
+            clock = max(d.earliest[node], clock + d.service[previous] + travel)
+            clock <= d.latest[node] + atol || _validation_error!(workspace, :time_window)
+            load += d.demand[node]
+            0 <= load <= d.capacity || _validation_error!(workspace, :capacity)
+            previous = node
+        end
+        travel = hypot(d.coordinates[previous, 1] - d.coordinates[1, 1],
+            d.coordinates[previous, 2] - d.coordinates[1, 2])
+        distance += travel
+        clock + d.service[previous] + travel <= d.latest[1] + atol ||
+            _validation_error!(workspace, :depot_return)
+        iszero(load) || _validation_error!(workspace, :nonzero_return_load)
+    end
+    all(index -> workspace.counts[index] == 1, 2:n) ||
+        _validation_error!(workspace, :service_uniqueness)
+    for (pickup, delivery) in d.pairs
+        workspace.route_of[pickup] == workspace.route_of[delivery] &&
+            workspace.route_of[pickup] != 0 || _validation_error!(workspace, :same_route)
+        workspace.position[pickup] < workspace.position[delivery] ||
+            _validation_error!(workspace, :precedence)
+    end
+    isfinite(distance) || _validation_error!(workspace, :nonfinite_distance)
+    return (; valid=isempty(workspace.errors), objective=(; vehicles, distance),
+        errors=copy(workspace.errors))
 end
 
 "Strict SINTEF Li-Lim text reader; preserve source ids and use unrounded Euclidean distances."
