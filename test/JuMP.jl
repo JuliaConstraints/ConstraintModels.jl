@@ -18,9 +18,26 @@ end
 @testset "JuMP: sudoku 9x9" begin
     m, X = sudoku(3)
     optimize!(m)
-    solution_ = value.(X)
     @info solution_summary(m)
-    display(solution_, Val(:sudoku))
+    # A bounded heuristic search may stop without a feasible Sudoku. Retrieve
+    # values only when the result API reports one, and check either outcome.
+    @test result_count(m) in (0, 1)
+    @test has_values(m) == (result_count(m) > 0)
+    if has_values(m)
+        @test primal_status(m) == MathOptInterface.FEASIBLE_POINT
+        solution_ = value.(X)
+        @test all(sort(solution_[i, :]) == collect(1:9) for i in 1:9)
+        @test all(sort(solution_[:, i]) == collect(1:9) for i in 1:9)
+        @test all(sort(vec(solution_[i:i+2, j:j+2])) == collect(1:9)
+            for i in 1:3:9, j in 1:3:9)
+        display(solution_, Val(:sudoku))
+    else
+        @test result_count(m) == 0
+        @test primal_status(m) == MathOptInterface.NO_SOLUTION
+        @test termination_status(m) in (MathOptInterface.ITERATION_LIMIT,
+            MathOptInterface.TIME_LIMIT, MathOptInterface.OTHER_LIMIT)
+        @test_throws MathOptInterface.ResultIndexBoundsError value(first(X))
+    end
 end
 
 @testset "JuMP: golomb(5)" begin

@@ -1,0 +1,108 @@
+blas_threads = 1
+cbls_commit = "582e3ef71ff08b7123c9b8433dfccaffe4e12d2e"
+change = "Keep the original empty 9x9 search and solver defaults. Guard value display on a reported feasible result. Add status/result-count consistency assertions, complete Sudoku validity checks for a returned result, and an explicit bounds-error assertion when no result exists."
+cleanup = "Only intrinsic test edit and this record remain. Pkg's required temporary environment and redirected solver logs removed automatically. No scripts, raw dumps, backup copies or duplicate exports."
+cm_commit = "21cd573b73a9608d33936f8e63e8d8ad857002f6"
+cold_limit = "The first fixed-domain control solve time includes cold compilation/initialization and exceeds the one-second search limit; this is not a wall-clock budget guarantee or controlled performance measurement."
+control_detail = "First attempted control supplied all clues as constraints but left search domains unfixed; it still returned zero solutions. Final completed diagnostic keeps that case and adds explicitly fixed domains as the feasible result-API control."
+cpu_affinity = [4, 6]
+finding = "The original empty-grid JuMP example assumes a feasible result after bounded unseeded local search. Reproduction stops at the 100-iteration limit with zero solutions; value retrieval correctly rejects a nonexistent result. The fixed-domain valid Sudoku control returns one feasible result and passes every row, column and block check."
+gc_threads = 1
+julia_threads = 2
+limits = ["No original assertion or Sudoku oracle removed. Original block had an unconditional value display and no convergence assertions. Both result branches now have six meaningful assertions.", "The fixed-domain control qualifies the feasible result branch and does not demonstrate convergence of the bounded empty-grid search.", "The targeted sandbox reruns only this testset and its feasible branch; no claim the full package entrypoint was reexecuted.", "Original unseeded/two-Julia-thread package run is not reproduced bit for bit; controlled test uses seed1 and one local-search thread.", "No runtime source, solver default, bank, native dependency or frozen checkout changed. No exhaustive search-runtime nonregression or controlled performance claim."]
+ls_commit = "d1c3b81ea7d091909fd187c7d6f808a03392f9a0"
+original_jump_test_sha256 = "7db97bb88d5d4516ec05998bab161cb87185c9ae3111c4133c703b4bddf91aca"
+qualified_jump_test_sha256 = "93eb35e5a97ceb79f79097e599bfd3f8f30e10459e9cdecf20b5c78117975ee6"
+record_verified_utc = "2026-10-09T03:25:42.804"
+recorded_utc = "2026-10-09T03:13:26.973"
+runtime = "1.13.1"
+schema = "constraintmodels-sudoku-result-qualification/2"
+scope = "Three small fixed-configuration diagnostic solves, seed1 and one local-search thread, identical frozen V6 dependencies. Solver iteration/time defaults retained. Only file logging, verbosity and thread count set; no solver matrix, training, native HiGHS or Hexaly execution."
+solver_threads = 1
+sudoku_source_sha256 = "7192281c90f8a759a9cf6b0e9098bc4d603852d4809d70493a06388e94d8da26"
+
+[environment_sha256]
+"Manifest.toml" = "27214c6563d47cb8878bd26f7197566c37a8b116473418e13b30ab81b32edfb7"
+"Project.toml" = "5372c69bd7cd4a893c8e417610f06a3f9d1fb482241a94982d84da5678a51a25"
+
+[guard_qualification]
+assertions = 12
+controls = "Seed1, one Julia/local-search thread. Limits remain 100 iterations/1second. Solver log destination redirected in memory to the Pkg temporary directory; runtime files untouched. Frozen V6 Project and Manifest fingerprints unchanged before/after; sandbox and logs automatically removed."
+harness_corrections = "Preparatory wrappers failed because metadata-only TOML/SHA imports were absent from the original test target and because a log-path binding lacked module interpolation. Removed the extra imports and interpolated the temporary path; final complete sandbox uses the original declared dependencies."
+julia_threads = 1
+jump_test_sha256 = "93eb35e5a97ceb79f79097e599bfd3f8f30e10459e9cdecf20b5c78117975ee6"
+scope = "Original modified testset parsed from test/JuMP.jl and executed in the actual offline Pkg-generated test sandbox, allow_reresolve=false. Original empty Sudoku runs unchanged. A second copy changes only the fixture call to explicitly fixed valid domains to exercise the returned-result branch; it does not replace the empty search."
+solver_threads = 1
+
+    [[guard_qualification.rows]]
+    case = "original-empty-search"
+    errored = 0
+    failed = 0
+    passed = 6
+    [[guard_qualification.rows]]
+    case = "fixed-domain-branch-control"
+    errored = 0
+    failed = 0
+    passed = 6
+
+[root_standard_test]
+commit = "21cd573b73a9608d33936f8e63e8d8ad857002f6"
+failure = "JuMP sudoku9x9 unconditionally reads VariablePrimal(1) after zero results."
+passed_assertions = 8016
+pdptw_workspace_assertions = 7798
+status = "failed"
+test_entrypoint_sha256 = "c90a828a33b18eb18795b3e6bc1c0b6bba789ad4d1f895d5a65f21809c3f7e7e"
+
+[[rows]]
+case = "fixed-domain-feasible-control"
+iteration_limit = 100
+primal_status = "FEASIBLE_POINT"
+raw_status = "solution_limit"
+result_count = 1
+seed = 1
+solver_seconds = 6.925504922866821
+termination = "SOLUTION_LIMIT"
+time_limit_seconds = 1.0
+valid_sudoku = true
+[[rows]]
+case = "fully-clued-original-input"
+iteration_limit = 100
+primal_status = "NO_SOLUTION"
+raw_status = "time_limit"
+result_count = 0
+seed = 1
+solver_seconds = 1.1074860095977783
+termination = "TIME_LIMIT"
+time_limit_seconds = 1.0
+value_query_error = "MathOptInterface.ResultIndexBoundsError{MathOptInterface.VariablePrimal}"
+[[rows]]
+case = "empty-original-input"
+iteration_limit = 100
+primal_status = "NO_SOLUTION"
+raw_status = "iteration_limit"
+result_count = 0
+seed = 1
+solver_seconds = 0.7779960632324219
+termination = "ITERATION_LIMIT"
+time_limit_seconds = 1.0
+value_query_error = "MathOptInterface.ResultIndexBoundsError{MathOptInterface.VariablePrimal}"
+
+[unchanged_runtime_sources.CBLS]
+baseline_commit = "1469501a5350fff7233295c2caa505938ad1a128"
+
+    [unchanged_runtime_sources.CBLS.sha256]
+    "src/results.jl" = "c296f28fc8ad05415f4452e4097781925da5e3f3ff26cfdab2d6ef37a49ad7bd"
+
+[unchanged_runtime_sources.ConstraintModels]
+baseline_commit = "a1b7a2e36a577c84f7448d16ca5bd78b8507a3ee"
+
+    [unchanged_runtime_sources.ConstraintModels.sha256]
+    "src/sudoku.jl" = "7192281c90f8a759a9cf6b0e9098bc4d603852d4809d70493a06388e94d8da26"
+    "test/JuMP.jl" = "7db97bb88d5d4516ec05998bab161cb87185c9ae3111c4133c703b4bddf91aca"
+
+[unchanged_runtime_sources.LocalSearchSolvers]
+baseline_commit = "009100b364f8fd1a28edba5d71b2d15294ba8dac"
+
+    [unchanged_runtime_sources.LocalSearchSolvers.sha256]
+    "src/options.jl" = "a1f76ca9a033b7beb85c8dbfeea963f2506089b26e8bd24a1667b84e74ff0ba1"
+    "src/solvers/main.jl" = "2f5d35a8e7d638c4542b4beeeae495e6a6545fb3c082602efba1a1af1dcd12bf"
