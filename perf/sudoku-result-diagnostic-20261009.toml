@@ -106,3 +106,169 @@ baseline_commit = "009100b364f8fd1a28edba5d71b2d15294ba8dac"
     [unchanged_runtime_sources.LocalSearchSolvers.sha256]
     "src/options.jl" = "a1f76ca9a033b7beb85c8dbfeea963f2506089b26e8bd24a1667b84e74ff0ba1"
     "src/solvers/main.jl" = "2f5d35a8e7d638c4542b4beeeae495e6a6545fb3c082602efba1a1af1dcd12bf"
+
+[full_standard_entrypoint]
+recorded_utc = "2026-10-09T04:31:26.736"
+total_assertions = 10585
+result_limitations = "Test exit status zero and 10585 assertions passed. Julia logging caught three pre-existing unguarded display-expression errors listed here, so this is not a clean-log or convergence claim. The original unseeded JuMP Sudoku returned no feasible result and its guard passed. Previously qualified fixed-domain branch remains separate targeted evidence."
+scope = "Complete test/runtests.jl in an actual offline Pkg-generated test target with allow_reresolve=false. Only CM source path redirected in the in-memory frozen V7 context. All remaining packages stay frozen; no resolution/install. Original test bodies, model construction, search limits and RNG calls preserved; no harness seeding or fixture replacement."
+native_solver_threads = 1
+blas_threads = 1
+cleanup = "Temporary Pkg environment and native solver log removed automatically; frozen Project/Manifest and all fingerprinted CM source/test files unchanged. Portable perf/pdptw environment untouched."
+logging_scope = "Private LocalSearchSolvers default_log_file_path overridden in this process to a sandbox-owned file only. Original logging/search options remain enabled; the file was removed with the temporary environment."
+runtime = "1.13.1"
+gc_threads = 1
+test_item_assertions = 2563
+ordinary_entrypoint_assertions = 8022
+checked_commit = "96029bff8099e3e25d023ad17a78487526fc62c1"
+julia_threads = 1
+cpu_affinity = [4, 6]
+
+    [full_standard_entrypoint.sandbox]
+    recorded_utc = "2026-10-09T04:21:49.054"
+    exit_code = 0
+    solver_threads = 1
+    temporary_environment_removed = true
+    julia_threads = 1
+
+        [full_standard_entrypoint.sandbox.frozen_environment_sha256]
+        "Project.toml" = "9523463e63a0ef4d5795e761b3bcb4b1466c6358ee9a88aff6c69af9bf74144d"
+        "Manifest.toml" = "fc37225b20f76ec93f47fa4a90fa15e0889db45a1fe59fda9446c14f4a533f06"
+
+        [full_standard_entrypoint.sandbox.extra_versions]
+        Test = "1.11.0"
+        TestItemRunner = "1.3.2"
+
+        [full_standard_entrypoint.sandbox.source_hashes]
+        "src/sudoku.jl" = "7192281c90f8a759a9cf6b0e9098bc4d603852d4809d70493a06388e94d8da26"
+        "Project.toml" = "6a2558e9da429ad182a8683e23b8ab8bd8da5daab1d87372c773ee198928047a"
+        "test/JuMP.jl" = "93eb35e5a97ceb79f79097e599bfd3f8f30e10459e9cdecf20b5c78117975ee6"
+        "src/benchmarks/Benchmarks.jl" = "2cdd991e2d60a7d65d150258f22daa628608a63f83e48f19a3dd8d2c7c3625e0"
+        "test/runtests.jl" = "c90a828a33b18eb18795b3e6bc1c0b6bba789ad4d1f895d5a65f21809c3f7e7e"
+
+    [full_standard_entrypoint.sudoku_original_empty_search]
+    guard_assertions = 6
+    convergence_claim = false
+    termination = "TIME_LIMIT"
+    primal_status = "NO_SOLUTION"
+    result_count = 0
+
+    [[full_standard_entrypoint.existing_log_record_errors]]
+    line = 54
+    example = "magic_square(3)"
+    exception = "MathOptInterface.ResultIndexBoundsError in value.(X) while constructing an @info record"
+    termination = "ITERATION_LIMIT"
+    result_count = 0
+    [[full_standard_entrypoint.existing_log_record_errors]]
+    line = 68
+    example = "qap(12)"
+    exception = "MathOptInterface.ResultIndexBoundsError in value.(X) while constructing an @info record"
+    termination = "ITERATION_LIMIT"
+    result_count = 0
+    [[full_standard_entrypoint.existing_log_record_errors]]
+    line = 98
+    example = "chemical_equilibrium"
+    exception = "MathOptInterface.ResultIndexBoundsError in value.(X) while constructing an @info record"
+    termination = "TIME_LIMIT"
+    result_count = 0
+
+[additional_result_guards]
+positive_control_scope = "Separate copied AST testsets retain their exact new guard bodies and original optimize! calls. Only fixture constructors differ: magic_square(1) has its native valid singleton; qap uses the original 12x12 data with fixed identity assignment. These controls alone seed RNG to 1 and run native CBLS/LocalSearchSolvers with one Julia thread in a Pkg-created offline test target. Both prove result_count=1 and FEASIBLE_POINT explicitly. Original unseeded standard examples are never replaced or seeded."
+recorded_utc = "2026-10-09T04:44:18.876"
+total_assertions = 10603
+convergence_claim = false
+scope = "Guard only the magic_square, qap and chemical_equilibrium @info value displays in the existing JuMP tests. Original unseeded model constructors, data, search settings/caps, all original assertions and complete standard entrypoint remain intact. New branch assertions validate the result API and model-specific returned values or the absence of results. Runtime solver/model implementations, Project and portable perf/pdptw files are unchanged."
+base_commit = "96029bff8099e3e25d023ad17a78487526fc62c1"
+cleanup = "All Pkg-generated temporary environments and private native solver logs removed automatically. Frozen V7 Project/Manifest fingerprints and checked sources unchanged within every run. No helper source files or persistent intermediate reports."
+magic_square_model_limit = "Original n=3 constructor uses AllEqual(val=15) for every row/column/diagonal while each variable is bounded 1:9, so it cannot have a feasible point. Its zero-result branch is qualified. The new positive branch validates both the actual AllEqual model constraints and square validity; native n=1 separately qualifies all six assertions. Original model source is unchanged."
+ordinary_entrypoint_assertions = 8040
+julia_threads = 1
+cpu_affinity = [4, 6]
+chemical_positive_control_limit = "Original free_energy expression passes a function to sum without an iteration domain. Evaluating the actual objective on a strictly positive, mass-conserving bounded point throws MethodError from iterate on that function. Original unseeded TIME_LIMIT/zero-result branch is qualified; its new finite/bounds/mass-conservation positive assertions remain unexecuted by a native result because that existing objective is invalid. No native positive-result or convergence claim is made."
+native_solver_threads = 1
+blas_threads = 1
+qap_result_api = "Compare the native MathOptInterface ObjectiveValue result with an independent flattened sum over the returned integer permutation. The first separate positive control exposed a pre-existing JuMP objective_value conversion MethodError for the solver's Int64 result to Union{Float64,Vector{Float64}} (five assertions passed, one errored); the final test uses the underlying result API and all six pass. No solver implementation/type or expected-value calculation was changed."
+runtime = "1.13.1"
+gc_threads = 1
+logging_exceptions = 0
+additional_guard_assertions = 18
+development_harness_note = "An initial positive-control harness counted its own fixture @test inside the copied magic-square testset, giving seven passes instead of the six guard assertions; fixture validation became @assert. This changed no library/test source. Subsequent controls exposed and resolved the QAP accessor issue described above."
+test_item_assertions = 2563
+
+    [additional_result_guards.chemical_objective_diagnosis]
+    runtime_sources_unchanged = true
+    objective_exception_type = "MethodError"
+    positive_mass_feasible_point = [1.4, 0.1, 0.1, 0.6, 0.1, 0.1, 0.1, 0.5, 0.1, 0.1]
+    source_sha256 = "5a8f6e421de631510ada9741f3e2fb0525cb76fd30a874c1de55b24399f6fc0b"
+    objective_exception = """MethodError: no method matching iterate(::ConstraintModels.var\"#chemical_equilibrium##8#chemical_equilibrium##9\"{Vector{Float64}, Vector{Float64}})\nThe function `iterate` exists, but no method is defined for this combination of argument types.\n\nClosest candidates are:\n  iterate(!Matched::EzXML.ChildNodeIterator)\n   @ EzXML ~/.julia/packages/EzXML/ROYMh/src/node.jl:1395\n  iterate(!Matched::EzXML.ChildNodeIterator, !Matched::Any)\n   @ EzXML ~/.julia/packages/EzXML/ROYMh/src/node.jl:1401\n  iterate(!Matched::BitSet)\n   @ Base bitset.jl:333\n  ...\n"""
+    native_positive_result_control_valid = false
+
+    [additional_result_guards.sandbox]
+    recorded_utc = "2026-10-09T04:43:21.305"
+    exit_code = 0
+    solver_threads = 1
+    temporary_environment_removed = true
+    julia_threads = 1
+
+        [additional_result_guards.sandbox.frozen_environment_sha256]
+        "Project.toml" = "9523463e63a0ef4d5795e761b3bcb4b1466c6358ee9a88aff6c69af9bf74144d"
+        "Manifest.toml" = "fc37225b20f76ec93f47fa4a90fa15e0889db45a1fe59fda9446c14f4a533f06"
+
+        [additional_result_guards.sandbox.extra_versions]
+        Test = "1.11.0"
+        TestItemRunner = "1.3.2"
+
+        [additional_result_guards.sandbox.source_hashes]
+        "src/sudoku.jl" = "7192281c90f8a759a9cf6b0e9098bc4d603852d4809d70493a06388e94d8da26"
+        "Project.toml" = "6a2558e9da429ad182a8683e23b8ab8bd8da5daab1d87372c773ee198928047a"
+        "test/JuMP.jl" = "7c80ee9057cbbe9c820484d273f58fca13301a29d3e622224ac35fc57fb3a856"
+        "src/benchmarks/Benchmarks.jl" = "2cdd991e2d60a7d65d150258f22daa628608a63f83e48f19a3dd8d2c7c3625e0"
+        "test/runtests.jl" = "c90a828a33b18eb18795b3e6bc1c0b6bba789ad4d1f895d5a65f21809c3f7e7e"
+
+    [additional_result_guards.positive_controls]
+    solver_threads = 1
+    julia_threads = 1
+    jump_test_sha256 = "7c80ee9057cbbe9c820484d273f58fca13301a29d3e622224ac35fc57fb3a856"
+    guard_branch_assertions = 12
+
+        [[additional_result_guards.positive_controls.rows]]
+        errored = 0
+        termination_status = "SOLUTION_LIMIT"
+        failed = 0
+        primal_status = "FEASIBLE_POINT"
+        passed = 6
+        case = "JuMP: magic_square(3)"
+        result_count = 1
+        [[additional_result_guards.positive_controls.rows]]
+        errored = 0
+        termination_status = "TIME_LIMIT"
+        failed = 0
+        primal_status = "FEASIBLE_POINT"
+        passed = 6
+        case = "JuMP: qap(12)"
+        result_count = 1
+
+    [[additional_result_guards.original_unseeded_guarded_outcomes]]
+    guard_assertions = 6
+    example = "sudoku(3)"
+    termination = "TIME_LIMIT"
+    primal_status = "NO_SOLUTION"
+    result_count = 0
+    [[additional_result_guards.original_unseeded_guarded_outcomes]]
+    guard_assertions = 6
+    example = "magic_square(3)"
+    termination = "ITERATION_LIMIT"
+    primal_status = "NO_SOLUTION"
+    result_count = 0
+    [[additional_result_guards.original_unseeded_guarded_outcomes]]
+    guard_assertions = 6
+    example = "qap(12)"
+    termination = "ITERATION_LIMIT"
+    primal_status = "NO_SOLUTION"
+    result_count = 0
+    [[additional_result_guards.original_unseeded_guarded_outcomes]]
+    guard_assertions = 6
+    example = "chemical_equilibrium"
+    termination = "TIME_LIMIT"
+    primal_status = "NO_SOLUTION"
+    result_count = 0

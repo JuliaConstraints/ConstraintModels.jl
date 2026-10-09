@@ -51,7 +51,27 @@ end
     m, X = magic_square(3)
     optimize!(m)
     @info solution_summary(m)
-    @info "JuMP: magic_square(3)" value.(X)
+    @test result_count(m) in (0, 1)
+    @test has_values(m) == (result_count(m) > 0)
+    if has_values(m)
+        @test primal_status(m) == MathOptInterface.FEASIBLE_POINT
+        solution_ = value.(X)
+        n = size(X, 1)
+        magic_constant = n * (n^2 + 1) / 2
+        @test sort(vec(solution_)) == collect(1:n^2)
+        @test all(==(magic_constant), solution_)
+        @test all(sum(solution_[i, :]) == magic_constant &&
+            sum(solution_[:, i]) == magic_constant for i in 1:n) &&
+            sum(solution_[i, i] for i in 1:n) == magic_constant &&
+            sum(solution_[i, n+1-i] for i in 1:n) == magic_constant
+        @info "JuMP: magic_square(3)" solution_
+    else
+        @test result_count(m) == 0
+        @test primal_status(m) == MathOptInterface.NO_SOLUTION
+        @test termination_status(m) in (MathOptInterface.ITERATION_LIMIT,
+            MathOptInterface.TIME_LIMIT, MathOptInterface.OTHER_LIMIT)
+        @test_throws MathOptInterface.ResultIndexBoundsError value(first(X))
+    end
 end
 
 @testset "JuMP: n_queens(5)" begin
@@ -65,7 +85,25 @@ end
     m, X = qap(12, qap_weights, qap_distances)
     optimize!(m)
     @info solution_summary(m)
-    @info "JuMP: qap(12)" value.(X)
+    @test result_count(m) in (0, 1)
+    @test has_values(m) == (result_count(m) > 0)
+    if has_values(m)
+        @test primal_status(m) == MathOptInterface.FEASIBLE_POINT
+        solution_ = value.(X)
+        @test all(isinteger, solution_)
+        @test sort(solution_) == collect(1:length(X))
+        assignment = Int.(solution_)
+        expected = sum(qap_weights[assignment[i], assignment[j]] * qap_distances[i, j]
+            for i in eachindex(assignment), j in eachindex(assignment))
+        @test MathOptInterface.get(backend(m), MathOptInterface.ObjectiveValue()) == expected
+        @info "JuMP: qap(12)" solution_
+    else
+        @test result_count(m) == 0
+        @test primal_status(m) == MathOptInterface.NO_SOLUTION
+        @test termination_status(m) in (MathOptInterface.ITERATION_LIMIT,
+            MathOptInterface.TIME_LIMIT, MathOptInterface.OTHER_LIMIT)
+        @test_throws MathOptInterface.ResultIndexBoundsError value(first(X))
+    end
 end
 
 @testset "JuMP: basic opt" begin
@@ -95,7 +133,23 @@ end
     # set_time_limit_sec(m, 120.0)
     optimize!(m)
     @info solution_summary(m)
-    @info "JuMP: $compounds_names ⟺ $mixture_name" value.(X)
+    @test result_count(m) in (0, 1)
+    @test has_values(m) == (result_count(m) > 0)
+    if has_values(m)
+        @test primal_status(m) == MathOptInterface.FEASIBLE_POINT
+        solution_ = value.(X)
+        @test all(isfinite, solution_)
+        @test all(0 <= value <= maximum(elements_weights) for value in solution_)
+        @test all(abs(sum(atoms_compounds[j, i] * solution_[j] for j in eachindex(solution_)) -
+            elements_weights[i]) <= 1.e-6 for i in eachindex(elements_weights))
+        @info "JuMP: $compounds_names ⟺ $mixture_name" solution_
+    else
+        @test result_count(m) == 0
+        @test primal_status(m) == MathOptInterface.NO_SOLUTION
+        @test termination_status(m) in (MathOptInterface.ITERATION_LIMIT,
+            MathOptInterface.TIME_LIMIT, MathOptInterface.OTHER_LIMIT)
+        @test_throws MathOptInterface.ResultIndexBoundsError value(first(X))
+    end
 end
 
 # @testset "JuMP: Scheduling" begin
