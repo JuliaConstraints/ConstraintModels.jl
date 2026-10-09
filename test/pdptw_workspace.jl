@@ -52,4 +52,25 @@ using .Benchmarks
     end
     @test validate_solution(instance, [[2, 3]], workspace) ==
           validate_solution(instance, [[2, 3]])
+
+    consumed_valid(instance, routes, workspace) =
+        validate_solution(instance, routes, workspace).valid
+    function consumed_allocations(instance, routes, workspace)
+        consumed_valid(instance, routes, workspace)
+        return @allocated consumed_valid(instance, routes, workspace)
+    end
+    for routes in ([[2, 3], [4, 5]], [[3, 2], [4]])
+        expected = validate_solution(instance, routes)
+        @test consumed_valid(instance, routes, workspace) === expected.valid
+        @test workspace.errors == expected.errors
+        if expected.valid
+            @test consumed_allocations(instance, routes, workspace) == 0
+        end
+        # Full results still own their diagnostics after a consumed call.
+        retained = validate_solution(instance, routes, workspace)
+        saved = deepcopy(retained)
+        consumed_valid(instance, [[2, 3], [4, 5]], workspace)
+        @test retained == saved
+        @test retained.errors !== workspace.errors
+    end
 end

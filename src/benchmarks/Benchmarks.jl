@@ -140,7 +140,7 @@ Run the complete original validator using caller-owned buffers. This overload
 checks every original constraint, including rejected and duplicate visits; it
 does not use solver scores or prior validation as an admission shortcut.
 """
-function validate_solution(instance::BenchmarkInstance{PickupDeliveryProblem}, routes,
+@inline function validate_solution(instance::BenchmarkInstance{PickupDeliveryProblem}, routes,
         workspace::PDPTWValidationWorkspace; atol=1e-8)
     isfinite(atol) && 0 <= atol <= 1e-6 || throw(ArgumentError("invalid time tolerance"))
     d = instance.data

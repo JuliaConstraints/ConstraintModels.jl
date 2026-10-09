@@ -1,0 +1,550 @@
+baseline_commit = "5edc50310d6ef6c1606a6df8635d85f7b1d76454"
+baseline_source_sha256 = "ca9ee24b92e638ec716e4b7de8313731a29adb1d65cf2d9e22f325c9270b8e43"
+case_sha256 = "41406aeaa2b8639a045d6b81cc30e19e89479580dc11791fcfcba382ea07c9b1"
+catalog_sha256 = "de0db3c4470be216aaba83f1e3e832c8b82f25af16e2e2574868fc6ed1928d76"
+change = "Only add @inline metadata to the complete three-argument workspace validator. All checks, Int128 load arithmetic, full result fields and owned copied diagnostics remain unchanged."
+claim = "A warmed prepared feasible caller that consumes only .valid can eliminate the 32-byte empty diagnostics result allocation on Julia 1.13.1."
+limits = ["No universal zero-allocation claim: workspace growth and nonempty diagnostics retain allocation paths.", "No elapsed-time, scaling, optimum, training, or native solver execution claim.", "No Julia 1.12 execution claim. Compiler allocation results are scoped to Julia 1.13.1.", "Preparation and verification are excluded from collector operations.", "Full-result callers retain independently owned diagnostic vectors.", "Actual application exchange requires both the library metadata and inline metadata on its intermediate original_check helper; library metadata alone still measured 32 bytes and one object.", "Shared application sources and frozen integrated checkouts were not edited.", "First-call measurements cover first exchange entry after module bootstrap and BenchmarkTools loading, including compilation and initial buffers; they are not whole application startup."]
+recorded_utc = "2026-10-09T01:57:55.258"
+schema = "juliaconstraints-consumed-validation-qualification/1"
+source_sha256 = "2cdd991e2d60a7d65d150258f22daa628608a63f83e48f19a3dd8d2c7c3625e0"
+test_sha256 = "570cad920fd9040d71d9738d8bbc382408f372a4eef93d84509784a29a3c896b"
+
+[analyzer_evidence]
+case_sha256 = "41406aeaa2b8639a045d6b81cc30e19e89479580dc11791fcfcba382ea07c9b1"
+recorded_utc = "2026-10-09T01:41:13.346"
+source_sha256 = "2cdd991e2d60a7d65d150258f22daa628608a63f83e48f19a3dd8d2c7c3625e0"
+
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "operation specialized for prepared state type; synchronization excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    quality = "not_checked"
+    status = "complete"
+    summary = ""
+    tool = "jet"
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "static operation specialization; tool exception-path defaults; not a universal allocation guarantee"
+    correctness = "passed"
+    findings_count = 5
+    quality = "not_checked"
+    status = "complete"
+    summary = ""
+    tool = "alloccheck"
+
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of Vector{Int64} in ./boot.jl:649"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./boot.jl"
+            line = 649
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of Memory{Symbol} in ./boot.jl:588"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./boot.jl"
+            line = 588
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of Memory{Symbol} in ./boot.jl:588"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./boot.jl"
+            line = 588
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of Memory{Vector{Int64}} in ./boot.jl:588"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./boot.jl"
+            line = 588
+        [[analyzer_evidence.analyzers.findings]]
+        first_line = "Allocation of Memory{Int64} in ./boot.jl:588"
+        rule_id = "allocation.potential"
+        severity = "warning"
+
+            [analyzer_evidence.analyzers.findings.location]
+            file = "./boot.jl"
+            line = 588
+
+        [analyzer_evidence.analyzers.measurements]
+    [[analyzer_evidence.analyzers]]
+    analysis_scope = "warmed operation and synchronization; fresh state; preparation, verification and cleanup excluded"
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Diagnostic instrumentation is separate from baseline timing.", "GC counters are process-wide and can include concurrently running tasks.", "No observed collection is not evidence that the workload never triggers GC."]
+    quality = "not_checked"
+    status = "complete"
+    summary = "5 operations: 0.0 ms in GC, 0 allocated bytes in total. Diagnostic counters are process-wide."
+    tool = "gc"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.allocated_bytes]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.bigalloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.compile_time]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.full_sweep]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.gc_seconds]
+            maximum = 0.0
+            minimum = 0.0
+
+            [analyzer_evidence.analyzers.measurements.lock_conflicts]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.malloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.operation_seconds]
+            maximum = 2.857e-6
+            minimum = 1.162e-6
+
+            [analyzer_evidence.analyzers.measurements.pause]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.poolalloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.realloc]
+            maximum = 0
+            minimum = 0
+
+            [analyzer_evidence.analyzers.measurements.recompile_time]
+            maximum = 0.0
+            minimum = 0.0
+    [[analyzer_evidence.analyzers]]
+    correctness = "passed"
+    findings = []
+    findings_count = 0
+    limitations = ["Reachable state growth may be an intended result or cache, not a leak.", "Process memory includes Julia, allocator retention and unrelated tasks; two points do not measure an operation peak.", "State and result are traversed together to avoid double-counting shared Julia objects; native/device allocations require their own provider."]
+    quality = "not_checked"
+    status = "complete"
+    summary = "5 operations: reachable state changed by 0 to 0 bytes. Growth may be intended output or a cache; it does not establish a leak."
+    tool = "memory"
+
+        [analyzer_evidence.analyzers.measurements]
+        samples = 5
+
+            [analyzer_evidence.analyzers.measurements.state_after_bytes]
+            maximum = 14809
+            minimum = 14809
+
+            [analyzer_evidence.analyzers.measurements.state_and_result_bytes]
+            maximum = 14817
+            minimum = 14817
+
+            [analyzer_evidence.analyzers.measurements.state_before_bytes]
+            maximum = 14809
+            minimum = 14809
+
+[application_boundary]
+cm_source_sha256 = "ca9ee24b92e638ec716e4b7de8313731a29adb1d65cf2d9e22f325c9270b8e43"
+root_source_count = 22
+structured_source_sha256 = "a19f292c97ff9e9a826f4e93646b9cd7f37a47708c5a45bff850882eda900b9e"
+
+    [application_boundary.environment_hashes]
+    "Manifest.toml" = "05cf77482353d35ed23ac3a295a09f48fc59ce93f9aaa59d3198e5ffc87f6c18"
+    "Project.toml" = "8834c110c76cb871722f5608c1202ec6c6be0fa199e842b7c8970bd2ecd7cb9f"
+
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 168.0
+    variant = "original"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 167.0
+    variant = "library-only"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 175.0
+    variant = "root-only"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 0
+    bytes = 0
+    minimum_ns = 164.0
+    variant = "both"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 0
+    bytes = 0
+    minimum_ns = 161.0
+    variant = "both-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 173.0
+    variant = "root-only-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 163.0
+    variant = "library-only-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    [[application_boundary.measurements]]
+    allocations = 1
+    bytes = 32
+    minimum_ns = 174.0
+    variant = "original-repeat"
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+
+[application_scope]
+evals = 1
+fixture = "Three requests in three RouteBuffer routes, capacity 2, fleet 4; original distance prefilter and caller-owned workspace enabled."
+prototype = "Identical frozen validator body renamed in memory and annotated; identical Root exchange bodies renamed to use original, library-only, Root-only or both inline helpers."
+required_root_change = "Add @inline metadata to original_check(p, routes, workspace); keep its existing workspace===nothing fallback and all validator calls."
+root_change_applied = false
+root_sources_checked = 22
+samples = 100
+source_hashes_unchanged_within_each_process = true
+
+[collector_evidence]
+case_sha256 = "41406aeaa2b8639a045d6b81cc30e19e89479580dc11791fcfcba382ea07c9b1"
+recorded_utc = "2026-10-09T01:41:42.088"
+source_sha256 = "2cdd991e2d60a7d65d150258f22daa628608a63f83e48f19a3dd8d2c7c3625e0"
+
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "workspace"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 64
+        minimum = 64
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2
+        minimum = 2
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 3.405e-6
+        minimum = 1.698e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "workspace"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 64.0
+        minimum = 64.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 2.0
+        minimum = 2.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 3.0720000000000004e-6
+        minimum = 1.7190000000000002e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "profile"
+    correctness = "passed"
+    implementation = "workspace"
+    message = ""
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "profile_alloc"
+    correctness = "passed"
+    implementation = "workspace"
+    message = ""
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "allocated"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 10080
+        minimum = 10080
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 127
+        minimum = 127
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 4.769e-6
+        minimum = 2.238e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "allocated"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 10080.0
+        minimum = 10080.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 127.0
+        minimum = 127.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 4.24e-6
+        minimum = 2.369e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "consumed"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0
+        minimum = 0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 4.13e-6
+        minimum = 1.142e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "consumed"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 0.0
+        minimum = 0.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 3.3820000000000004e-6
+        minimum = 1.167e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "profile"
+    correctness = "passed"
+    implementation = "consumed"
+    message = ""
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "profile_alloc"
+    correctness = "passed"
+    implementation = "consumed"
+    message = ""
+    status = "complete"
+    [[collector_evidence.collectors]]
+    collector = "benchmark"
+    correctness = "passed"
+    implementation = "default-consumed"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 32
+        minimum = 32
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 1
+        minimum = 1
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 3.145e-6
+        minimum = 1.176e-6
+        samples = 5
+    [[collector_evidence.collectors]]
+    collector = "chairmark"
+    correctness = "passed"
+    implementation = "default-consumed"
+    message = ""
+    status = "complete"
+
+        [collector_evidence.collectors."julia.alloc.bytes"]
+        maximum = 32.0
+        minimum = 32.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.alloc.count"]
+        maximum = 1.0
+        minimum = 1.0
+        samples = 5
+
+        [collector_evidence.collectors."julia.wall.time"]
+        maximum = 4.327e-6
+        minimum = 1.162e-6
+        samples = 5
+
+[control]
+default_metadata = true
+method = "Parse the exact current workspace function before macro expansion; rename its identical body and evaluate without @inline metadata in the private profiling module."
+public_api_added = false
+rejected_controls = ["Call-site Base.@noinline changed keyword-wrapper behavior and produced 640 bytes / 7 objects; it is not the former default baseline.", "A non-constant global selected application callable produced 208 warmed bytes from dynamic dispatch; corrected to a const selected callable before reported first-call comparison.", "The initial invalid consumed allocation assertion incorrectly required zero; observed 80 bytes were from retained nonempty diagnostics and the assertion was restricted to the prepared valid case."]
+
+[exact_bank]
+populated = 3
+schemas = ["W4 sum", "W2 all_equal", "W52 ordered"]
+sha256 = "4df0b409d303d1b666a2d0aba3367c1dc08a2b380da109e50dee83b042b8ea90"
+slots = 52
+training = false
+weights_changed = false
+
+[first_call]
+extra_observed_first_bytes = 14370616
+root_sources_checked = 22
+scope = "Separate fresh Julia workers after the same module bootstrap; const selected callable; initial workspace and RouteBuffer growth included; no timing conclusion from one worker each."
+source_hashes_unchanged_within_each_process = true
+tradeoff = "Coupled library and application inline metadata removed the warmed 32-byte allocation but added 14,370,616 observed first-entry allocated bytes, predominantly compilation."
+workers_per_variant = 1
+
+    [first_call.both]
+    first_bytes = 33179792
+    first_compile_seconds = 0.231250217
+    first_recompile_seconds = 0.0
+    first_seconds = 0.231292662
+    root_source_count = 22
+    structured_source_sha256 = "e937c1f3f42afceda364ac7ea629fca5cc4a02da062b5214600705520568470e"
+    variant = "both"
+    warm_bytes = 0
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    warm_seconds = 6.031e-6
+
+        [first_call.both.environment_hashes]
+        "Manifest.toml" = "05cf77482353d35ed23ac3a295a09f48fc59ce93f9aaa59d3198e5ffc87f6c18"
+        "Project.toml" = "8834c110c76cb871722f5608c1202ec6c6be0fa199e842b7c8970bd2ecd7cb9f"
+
+    [first_call.original]
+    first_bytes = 18809176
+    first_compile_seconds = 0.193175344
+    first_recompile_seconds = 0.0
+    first_seconds = 0.193203665
+    root_source_count = 22
+    structured_source_sha256 = "e937c1f3f42afceda364ac7ea629fca5cc4a02da062b5214600705520568470e"
+    variant = "original"
+    warm_bytes = 32
+    warm_compile_seconds = 0.0
+    warm_recompile_seconds = 0.0
+    warm_seconds = 7.92e-6
+
+        [first_call.original.environment_hashes]
+        "Manifest.toml" = "05cf77482353d35ed23ac3a295a09f48fc59ce93f9aaa59d3198e5ffc87f6c18"
+        "Project.toml" = "8834c110c76cb871722f5608c1202ec6c6be0fa199e842b7c8970bd2ecd7cb9f"
+
+[lc101_fixture]
+distance = 828.9368669428341
+pilot_source_sha256 = "5a08683820a39270c168b4436c6a8aa5e1b759b9e949074c776218e2212bd9da"
+raw_sha256 = "1e525ef3d65d15cdcd65974704bd640487424a1700061895d919d60ad210588f"
+routes = [[6, 4, 8, 9, 11, 12, 10, 7, 5, 3, 2, 76], [21, 25, 26, 28, 30, 31, 29, 27, 24, 104, 23, 22], [68, 66, 64, 63, 75, 73, 62, 65, 103, 69, 67, 70], [44, 43, 42, 41, 45, 47, 46, 49, 52, 102, 51, 53, 50, 48], [91, 88, 87, 84, 83, 85, 86, 89, 90, 92], [99, 97, 96, 95, 93, 94, 98, 107, 101, 100], [58, 56, 55, 54, 57, 59, 61, 60], [14, 18, 19, 20, 16, 17, 15, 13], [33, 34, 32, 36, 38, 39, 40, 37, 106, 35], [82, 79, 105, 77, 72, 71, 74, 78, 80, 81]]
+vehicles = 10
+
+[[matched_library_measurements]]
+allocations = 1
+bytes = 32
+minimum_ns = 1030.0
+variant = "default"
+[[matched_library_measurements]]
+allocations = 0
+bytes = 0
+minimum_ns = 1026.0
+variant = "inline"
+[[matched_library_measurements]]
+allocations = 0
+bytes = 0
+minimum_ns = 1011.0
+variant = "inline-repeat"
+[[matched_library_measurements]]
+allocations = 1
+bytes = 32
+minimum_ns = 1030.0
+variant = "default-repeat"
+
+[matched_library_scope]
+evals = 1
+order = ["default", "inline", "inline-repeat", "default-repeat"]
+prepared_feasible = true
+samples = 100
+
+[runtime]
+blas_threads = 1
+cpu_affinity = [4, 6]
+julia = "1.13.1"
+julia_gc_threads = 1
+julia_threads = 2
+mkl_threads = 1
+omp_threads = 1
+package_precompile_auto = false
+
+[tests]
+added_assertions = 9
+application_four_variant_differential_assertions = 1620
+application_library_only_differential_assertions = 540
+coverage = ["Complete result equality including ordered errors, objective and types", "Retained full-result diagnostics remain unchanged after workspace reuse", "Valid and invalid consumed calls preserve full validation error state", "Six application route fixtures, request exchanges, both prefilter settings, and complete workspace bookkeeping"]
+exact_bank_assertions = 29
+local_result_ownership_assertions = 7
+native_limit_assertions = 31
+reconstructed_semantics_assertions = 25
+total = 7854
+workspace_assertions = 7798
